@@ -24,20 +24,14 @@ Aexon adalah aplikasi companion untuk mengelola daemon shell tingkat sistem di A
 
 Desain antarmuka Aexon terinspirasi dari beberapa proyek berikut:
 
-- **AxManager** — https://github.com/fahrez182/AxManager.git
-- **KernelSU Next** — https://github.com/KernelSU-Next/KernelSU-Next
-- **Magisk Manager** — https://github.com/topjohnwu/Magisk
-- **Shizuku** — https://github.com/RikkaApps/Shizuku.git
+- **AxManager** — [github.com/fahrez182/AxManager](https://github.com/fahrez182/AxManager.git)
+- **KernelSU Next** — [github.com/KernelSU-Next/KernelSU-Next](https://github.com/KernelSU-Next/KernelSU-Next)
+- **Magisk Manager** — [github.com/topjohnwu/Magisk](https://github.com/topjohnwu/Magisk)
+- **Shizuku** — [github.com/RikkaApps/Shizuku](https://github.com/RikkaApps/Shizuku.git)
+
+> Untuk Shizuku, Aexon hanya menggunakan **library API resminya** (bukan meniru kode UI/UX-nya), untuk keperluan integrasi permission/privilege: [github.com/RikkaApps/Shizuku-API](https://github.com/RikkaApps/Shizuku-API)
 
 Perlu ditegaskan: **inspirasi di sini murni pada sisi desain/UI**, bukan penggunaan ulang kode. Seluruh source code Aexon — daemon native, JNI, sistem theming, komponen UI — ditulis dari nol tanpa menyalin/fork dari proyek-proyek di atas atau proyek pihak ketiga manapun.
-
-## Fitur
-
-- **Native watchdog daemon** — daemon C++ yang memantau dan otomatis me-restart shell server jika mati
-- **Signature verification** — validasi SHA-256 native untuk mendeteksi tampering pada APK
-- **Dynamic theming** — sistem warna berbasis CAM16/HCT untuk akurasi warna di dark mode
-- **Shell server lokal** — komunikasi socket lokal (127.0.0.1) dengan autentikasi token
-- **Live status monitoring** — status daemon, uptime real-time, SELinux context, dan info ABI/Android version
 
 ## Lisensi
 
