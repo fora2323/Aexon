@@ -24,9 +24,10 @@ Aexon adalah aplikasi companion untuk mengelola daemon shell tingkat sistem di A
 
 Desain antarmuka Aexon terinspirasi dari beberapa proyek berikut:
 
-- **KernelSU Next**
-- **Magisk Manager**
-- **Shizuku**
+- **AxManager** — https://github.com/fahrez182/AxManager.git
+- **KernelSU Next** — https://github.com/KernelSU-Next/KernelSU-Next
+- **Magisk Manager** — https://github.com/topjohnwu/Magisk
+- **Shizuku** — https://github.com/RikkaApps/Shizuku.git
 
 Perlu ditegaskan: **inspirasi di sini murni pada sisi desain/UI**, bukan penggunaan ulang kode. Seluruh source code Aexon — daemon native, JNI, sistem theming, komponen UI — ditulis dari nol tanpa menyalin/fork dari proyek-proyek di atas atau proyek pihak ketiga manapun.
 
@@ -51,7 +52,7 @@ Lihat file [`LICENSE`](LICENSE) untuk teks lengkap.
 
 ## Disclaimer
 
-Aexon adalah proyek pribadi, gratis, dan closed-development (dikembangkan oleh satu orang) namun tetap open-source sesuai ketentuan GPL-3.0. Aexon tidak berafiliasi dengan KernelSU Next, Magisk, Shizuku, atau proyek lain manapun yang disebutkan di atas.
+Aexon adalah proyek pribadi, gratis, dan closed-development (dikembangkan oleh satu orang) namun tetap open-source sesuai ketentuan GPL-3.0. Aexon tidak berafiliasi dengan AxManager, KernelSU Next, Magisk, Shizuku, atau proyek lain manapun yang disebutkan di atas.
 
 ---
 
