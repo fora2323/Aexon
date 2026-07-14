@@ -29,7 +29,7 @@ Desain antarmuka Aexon terinspirasi dari beberapa proyek berikut:
 - **Magisk Manager** — [github.com/topjohnwu/Magisk](https://github.com/topjohnwu/Magisk)
 - **Shizuku** — [github.com/RikkaApps/Shizuku](https://github.com/RikkaApps/Shizuku.git)
 
-> Untuk Shizuku, Aexon hanya menggunakan **library API resminya** (bukan meniru kode UI/UX-nya), untuk keperluan integrasi permission/privilege: [github.com/RikkaApps/Shizuku-API](https://github.com/RikkaApps/Shizuku-API)
+> Untuk Shizuku, Aexon hanya menggunakan **library API resminya** (bukan meniru kode nya), untuk keperluan integrasi permission/privilege: [github.com/RikkaApps/Shizuku-API](https://github.com/RikkaApps/Shizuku-API)
 
 Perlu ditegaskan: **inspirasi di sini murni pada sisi desain/UI**, bukan penggunaan ulang kode. Seluruh source code Aexon — daemon native, JNI, sistem theming, komponen UI — ditulis dari nol tanpa menyalin/fork dari proyek-proyek di atas atau proyek pihak ketiga manapun.
 
