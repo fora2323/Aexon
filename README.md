@@ -12,6 +12,7 @@
   <img src="https://img.shields.io/badge/license-GPL--3.0-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/platform-Android-3DDC84.svg" alt="Platform">
   <img src="https://img.shields.io/badge/made%20with-Sketchware%20%26%20Termux-00E5CC.svg" alt="Made with">
+  <img src="https://img.shields.io/github/downloads/fora2323/Aexon/total?style=for-the-badge" alt="Downloads">
 </p>
 
 ---
