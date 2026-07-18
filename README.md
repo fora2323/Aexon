@@ -5,7 +5,7 @@
 <h1 align="center">Aexon</h1>
 
 <p align="center">
-  Root/system management companion for Android — dibangun sepenuhnya dari nol.
+  Root/system management companion for Android
 </p>
 
 <p align="center">
