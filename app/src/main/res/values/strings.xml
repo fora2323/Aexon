@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--text menu-->
+    <string name="app_name">Aexon</string>
+    <string name="tag_home">Home</string>
+    <string name="tag_aexon">Aexon</string>
+    <string name="tag_settings">Settings</string>
+    <string name="tag_dec_home">Dashboard Home</string>
+    <string name="tag_dec_aexon">Managament Application</string>
+    <string name="tag_dec_settings">System Preference</string>
+    <!--text nav-->
+    <string name="tag_nav_home">Home</string>
+    <string name="tag_nav_aexon">Aexon</string>
+    <string name="tag_nav_settings">Settings</string>
+</resources>

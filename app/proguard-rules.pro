@@ -1,0 +1,9 @@
+-repackageclasses
+-flattenpackagehierarchy
+-allowaccessmodification         
+-ignorewarnings                  
+-dontnote                        
+-dontwarn
+-optimizations !code/simplification/arithmetic 
+-optimizationpasses 5           
+-overloadaggressively
