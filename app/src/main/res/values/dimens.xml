@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ukuran_teks_menu">16sp</dimen>
+    <dimen name="lebar_popup_terminal">300dp</dimen>
+    <dimen name="padding_item_menu">8dp</dimen>
+</resources>

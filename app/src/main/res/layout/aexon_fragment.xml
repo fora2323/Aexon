@@ -1,0 +1,94 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<FrameLayout
+		android:id="@+id/linear1"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+		<LinearLayout
+			android:id="@+id/linear2"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+			<ListView
+				android:id="@+id/listview1"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:paddingTop="75dp"
+				android:paddingBottom="70dp"
+				android:dividerHeight="0dp"
+				android:clipToPadding="false"
+				android:divider="@null"
+				android:choiceMode="none"
+				android:scrollbars="none"
+				tools:listitem="@layout/list_app" />
+			<LinearLayout
+				android:id="@+id/container3"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:gravity="center_horizontal|center_vertical"
+				android:orientation="vertical">
+				<com.aexon.material.aexonloading.AexonLoading
+					android:id="@+id/loadingaexon1"
+					android:layout_width="120dp"
+					android:layout_height="120dp"
+					android:orientation="vertical"
+					app:thumb_color="@color/colorPrimary"
+					app:track_color="@color/colorSurfaceContainer"
+					app:icon="@drawable/ic_aexon" />
+				<TextView
+					android:id="@+id/text_not_found"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:padding="8dp"
+					android:text="@string/tag_not_found"
+					android:textSize="14sp"
+					android:textStyle="bold"
+					android:textColor="@color/colorOnSurfaceVariant" />
+			</LinearLayout>
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/search_view"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="14dp"
+			android:padding="8dp"
+			android:background="@color/colorSurfaceContainer"
+			android:gravity="center_vertical"
+			android:orientation="horizontal"
+			android:alpha="0.8">
+			<ImageView
+				android:id="@+id/imageview1"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:padding="6dp"
+				android:src="@drawable/ic_search"
+				android:scaleType="centerInside" />
+			<com.aexon.material.edittext.AexonEditText
+				android:id="@+id/search_bar"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:background="@android:color/transparent"
+				android:textSize="15sp"
+				android:textStyle="bold"
+				android:textColor="@color/colorOnSurface"
+				android:hint="Search for application.."
+				android:textColorHint="@color/colorOnSurfaceVariant"
+				android:singleLine="true"
+				android:layout_weight="1" />
+			<ImageView
+				android:id="@+id/icon_more"
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:padding="6dp"
+				android:src="@drawable/ic_more"
+				android:scaleType="centerInside" />
+		</LinearLayout>
+	</FrameLayout>
+</LinearLayout>

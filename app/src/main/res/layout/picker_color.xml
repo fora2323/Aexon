@@ -1,0 +1,43 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:gravity="center_horizontal"
+	android:padding="4dp"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+	<com.aexon.material.color.AexonColorPickerView
+		android:id="@+id/view1"
+		android:layout_width="240dp"
+		android:layout_height="240dp"
+		android:layout_marginBottom="16dp"
+		android:padding="10dp"
+		app:elevation_view="4dp"
+		app:indikator_pointer="true"
+		app:radius_view="125dp"
+		app:size_pointer="9dp" />
+	<LinearLayout
+		android:id="@+id/hex_container"
+		android:layout_width="240dp"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="8dp">
+		<com.aexon.material.edittext.AexonEditText
+			android:id="@+id/input_hex"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="10dp"
+			android:background="@android:color/transparent"
+			android:textSize="14sp"
+			android:hint="Hex Color"
+			android:focusable="true" />
+	</LinearLayout>
+	<com.aexon.material.color.AexonColorSliderBrightness
+		android:id="@+id/view3"
+		android:layout_width="240dp"
+		android:layout_height="28dp"
+		app:radius_slider="8dp"
+		app:slider_elevation_track="2dp"
+		app:slider_stroke="1dp"
+		app:slider_stroke_color="@color/colorOutline" />
+</LinearLayout>
