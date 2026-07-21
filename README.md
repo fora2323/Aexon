@@ -4,7 +4,7 @@
 
 <h1 align="center">Aexon</h1>
 
-<p align="center">Root/system management companion for Android — dibangun sepenuhnya dari nol.</p>
+<p align="center">Root/system management companion for Android — dibangun sepenuhnya dari nol</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-GPL--3.0-blue">
@@ -43,7 +43,3 @@ Ini berarti:
 - Tidak ada jaminan (warranty) atas penggunaan aplikasi ini
 
 Lihat file [LICENSE](LICENSE) untuk teks lengkap.
-
-## Disclaimer
-
-Aplikasi ini dikembangkan untuk keperluan pribadi/edukasi seputar manajemen sistem Android tingkat root. Gunakan dengan risiko ditanggung sendiri.
