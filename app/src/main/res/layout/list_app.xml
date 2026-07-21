@@ -1,0 +1,73 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/container"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="14dp"
+		android:layout_marginTop="6dp"
+		android:layout_marginRight="14dp"
+		android:layout_marginBottom="6dp"
+		android:padding="5dp"
+		android:background="@color/colorSurfaceContainer"
+		android:orientation="vertical">
+		<LinearLayout
+			android:id="@+id/container_view"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+			<com.aexon.material.cardview.AexonCardView
+				android:id="@+id/cardview1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				app:boxRadius="20dp">
+				<ImageView
+					android:id="@+id/icon_app"
+					android:focusable="false"
+					android:layout_width="45dp"
+					android:layout_height="45dp"
+					android:padding="6dp"
+					android:src="@drawable/default_image"
+					android:scaleType="centerInside" />
+			</com.aexon.material.cardview.AexonCardView>
+			<TextView
+				android:id="@+id/name_app"
+				android:focusable="false"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="4dp"
+				android:layout_marginRight="4dp"
+				android:padding="2dp"
+				android:text="TextView"
+				android:textSize="16sp"
+				android:textStyle="bold"
+				android:textColor="@color/colorOnSurface"
+				android:singleLine="true"
+				android:layout_weight="1"
+				android:includeFontPadding="false" />
+			<ImageView
+				android:id="@+id/boost_btn"
+				android:focusable="false"
+				android:layout_width="35dp"
+				android:layout_height="35dp"
+				android:padding="6dp"
+				android:src="@drawable/ic_electric_bolt_outline"
+				android:scaleType="centerInside" />
+		</LinearLayout>
+		<LinearLayout
+			android:id="@+id/monito_enrgy"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			android:padding="8dp"
+			android:orientation="horizontal" />
+	</LinearLayout>
+</LinearLayout>

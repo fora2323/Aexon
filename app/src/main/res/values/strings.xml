@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name" translatable="false">Aexon</string>
+    <string name="home_name">Dasboard Home</string>
+    <string name="aexon_name">Management Applacation</string>
+    <string name="settings_name">System Preference</string>
+    <string name="home_tag">Home</string>
+    <string name="app_tag">Apps</string>
+    <string name="settings_tag">Settings</string>
+    <string name="tag_active">Aexon is already active</string>
+    <string name="tag_dec_rooted">In addition, Aexon can be started automatically on boot. If not, please check if your system or third-party tools have restricted&lt;br&gt;You can refer to &lt;a href=&quot;https://dontkillmyapp.com/&quot;&gt;Don\'t kill my app!&lt;/a&gt;.</string>
+    <string name="tag_cnect_shizuku">Connect Using Shizuku</string>
+    <string name="dec_shizuku">If Shizuku is installed and running, tap to grant permission and activate enhanced ADB access.</string>
+    <string name="tag_not_running">Required Activation</string>
+    <string name="tag_running">Running</string>
+    <string name="tag_title_view_cmd">View Command</string>
+    <string name="tag_btn_copy">Copy</string>
+    <string name="tag_btn_cancel">Cancel</string>
+    <string name="tag_btn_send">Send</string>
+    <string name="tag_btn_ok">Oky</string>
+    <string name="tag_msg_cmd">There are some other considerations, please confirm that you have read the help first.</string>
+    <string name="tag_btn_reset">Reset</string>
+    <string name="tag_title_dialog_picker">Choose color</string>
+    <string name="tag_aexon_not_run">click to activate Aexon</string>
+    <string name="tag_aexon_not_running">Aexon not running!</string>
+    <string name="tag_not_found">Not found</string>
+    <string name="tag_pair_notif_found">Pairing service found</string>
+    <string name="tag_btn_notif_enter">Enter pairing code</string>
+    <string name="tag_notif_search">Searching for pairing service</string>
+    <string name="tag_btn_stop_notif">Stop searching</string>
+    <string name="tag_dec_dynamic_off">Customize primary color</string>
+    <string name="tag_dec_dynamic_on">Overriden by dynamic color</string>
+    <string name="url_tele">https://t.me/gfxaexon</string>
+    <string name="url_wa">https://whatsapp.com/channel/0029VbDBooX8qJ01Gik6RI3N</string>
+    <string name="tag_btn_shizuku">Connect shizuku</string>
+    <string name="tag_shizuku_title">Shizuka Not Installed</string>
+    <string name="tag_shizuku_dec">Install Shizuku first if you want to use the Shizuku service to run Aexon</string>
+    <string name="tag_btn_install">Install</string>
+    <string name="tag_shizuku_dec_toasty">Please run shizuku first..</string>
+    <string name="tag_url_shizuku">https://play.google.com/store/apps/details?id=moe.shizuku.privileged.api</string>
+    <string name="tag_shizuku_running">Shizuku Running</string>
+    <string name="tag_shizuku_running_dec">Shizuku is already running and ready to use</string>
+    <string name="tag_rish_not_running">Shizuku Not Running</string>
+    <string name="tag_rish_not_running_dec">Please connect Shizuku first before starting</string>
+    <string name="tag_root_not_support">Not Supported</string>
+    <string name="tag_root_not_support_dec">This device is not rooted</string>
+    <string name="tag_url_donation">https://tako.id/FloraWhin</string>
+    <string name="tag_error">Error</string>
+    <string name="tag_aexon_crash_dec">Aexon cannot be modified..</string>
+    <string name="tag_url_github">https://github.com/fora2323/Aexon</string>
+    <string name="tag_dec_support_github">Aexon is a fully free and open-source project developed by a solo developer using Sketchware and Termux. Feel free to explore the code, contribute, and support my work if you find it helpful!</string>
+    <string name="tag_choose_language">Choose Language</string>
+    <string name="tag_btn_apply">Apply</string>
+    <string name="tag_save_log">Save Log Results</string>
+    <string name="tag_using_busybox">Using Busybox</string>
+    <string name="tag_delete_log">Delete Logs</string>
+    <string name="tag_lounch">Open</string>
+    <string name="tag_uninstall">Uninstall</string>
+    
+    
+    <!--text menu-->
+    <string name="tag_home">Home</string>
+    <string name="tag_aexon">Aexon</string>
+    <string name="tag_settings">Settings</string>
+    <string name="tag_dec_home">Dashboard Home</string>
+    <string name="tag_dec_aexon">Managament Application</string>
+    <string name="tag_dec_settings">System Preference</string>
+    <!--text nav-->
+    <string name="tag_nav_home">Home</string>
+    <string name="tag_nav_aexon">Aexon</string>
+    <string name="tag_nav_settings">Settings</string>
+</resources>

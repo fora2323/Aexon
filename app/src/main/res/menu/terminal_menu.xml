@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ax_mode"
+        android:title="@string/tag_using_busybox"
+        android:icon="@drawable/ic_aexon"
+        android:checkable="true" />
+    <item
+        android:id="@+id/save_log"
+        android:title="@string/tag_save_log"
+        android:icon="@drawable/ic_save" />
+    <item
+        android:id="@+id/delete_log"
+        android:title="@string/tag_delete_log"
+        android:icon="@drawable/ic_delete" />
+</menu>
