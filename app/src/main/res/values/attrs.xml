@@ -34,26 +34,6 @@
         <attr name="boxRippleColor" format="color" />
     </declare-styleable>
 
-    <!-- AexonNavigation -->
-    <declare-styleable name="AexonNavigation">
-        <attr name="navigastionRadius" format="dimension" />
-        <attr name="navigastionOnTint" format="color" />
-        <attr name="navigastionOnTextColor" format="color" />
-        <attr name="navigastionOffTint" format="color" />
-        <attr name="navigastionThumbColor" format="color" />
-        <attr name="navigastionCornerStyle" format="enum">
-            <enum name="round" value="0" />
-            <enum name="cut" value="1" />
-        </attr>
-        <attr name="navigastionIconTintList" format="reference" />
-        <attr name="navigastionTextColorList" format="reference" />
-        <attr name="navigastionLabelVisibilityMode" format="enum">
-           <enum name="auto" value="0" />
-           <enum name="labeled" value="1" />
-           <enum name="unlabeled" value="2" />
-        </attr>
-    </declare-styleable>
-
     <!-- AexonLoading -->
     <declare-styleable name="AexonLoading">
         <attr name="track_color" format="color" />
