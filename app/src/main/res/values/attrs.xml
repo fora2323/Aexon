@@ -34,11 +34,14 @@
         <attr name="boxRippleColor" format="color" />
     </declare-styleable>
 
+    <!-- Global Attributes -->
+    <attr name="icon" format="reference" />
+
     <!-- AexonLoading -->
     <declare-styleable name="AexonLoading">
         <attr name="track_color" format="color" />
         <attr name="thumb_color" format="color" />
-        <attr name="icon" format="reference" />
+        <attr name="icon" />
         <attr name="indeterminate" format="boolean" />
         <attr name="duration" format="integer" />
     </declare-styleable>
@@ -65,7 +68,7 @@
     <declare-styleable name="AexonButton">
         <attr name="cornerRadius" format="dimension" />
         <attr name="buttonColor" format="color|reference" />
-        <attr name="icon" format="reference" />
+        <attr name="icon" />
         <attr name="iconSize" format="dimension" />
         <attr name="iconPadding" format="dimension" />
         <attr name="iconTint" format="color|reference" />
