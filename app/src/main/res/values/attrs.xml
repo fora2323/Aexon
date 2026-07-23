@@ -104,7 +104,6 @@
     
     <!-- AexonImageView -->
     <declare-styleable name="AexonImageView">
-        <attr name="ax_radius" format="dimension" />
         <attr name="ax_radiusTopLeft" format="dimension" />
         <attr name="ax_radiusTopRight" format="dimension" />
         <attr name="ax_radiusBottomLeft" format="dimension" />
