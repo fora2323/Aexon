@@ -1,0 +1,10 @@
+{
+    "projectName": "Aexon",
+    "packageName": "com.aexon",
+    "templateId": "empty_activity",
+    "createdAt": 1784843876109,
+    "targetSdk": 36,
+    "minSdk": 26,
+    "version": "1.0.0",
+    "androstudioVersion": "1.0.0"
+}
