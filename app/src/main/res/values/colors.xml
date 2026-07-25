@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="colorPrimary">#80D4D6</color>
+    <color name="colorPrimaryDark">#004F51</color>
+    <color name="colorAccent">#B0CCCC</color>
+    <color name="colorControlHighlight">#FFFFFF</color>
+    <color name="colorControlNormal">#958E9B</color>
+    <color name="colorOnPrimary">#00363A</color>
+    <color name="colorOnPrimaryDark">#9DF0F8</color>
+    <color name="colorOnAccent">#1B3437</color>
+    <color name="colorAccentContainer">#324B4D</color>
+    <color name="colorOnAccentContainer">#CCE8EA</color>
+    <color name="colorTertiary">#B7C7EA</color>
+    <color name="colorOnTertiary">#21304C</color>
+    <color name="colorTertiaryContainer">#384764</color>
+    <color name="colorOnTertiaryContainer">#D7E2FF</color>
+    <color name="colorError">#FFB4AB</color>
+    <color name="colorOnError">#690005</color>
+    <color name="colorErrorContainer">#93000A</color>
+    <color name="colorOnErrorContainer">#FFDAD6</color>
+    <color name="colorSurface">#0E1415</color>
+    <color name="colorOnSurface">#DDE4E4</color>
+    <color name="colorSurfaceVariant">#3F4849</color>
+    <color name="colorOnSurfaceVariant">#BEC8C9</color>
+    <color name="colorOutline">#899393</color>
+    <color name="colorOutlineVariant">#3F4849</color>
+    <color name="colorSurfaceInverse">#DDE4E4</color>
+    <color name="colorOnSurfaceInverse">#2B3232</color>
+    <color name="colorPrimaryInverse">#006970</color>
+    <color name="colorSurfaceDim">#0E1415</color>
+    <color name="colorSurfaceBright">#343A3B</color>
+    <color name="colorSurfaceContainerLowest">#090F10</color>
+    <color name="colorSurfaceContainerLow">#161D1D</color>
+    <color name="colorSurfaceContainer">#1A2121</color>
+    <color name="colorSurfaceContainerHigh">#252B2C</color>
+    <color name="colorSurfaceContainerHighest">#303636</color>
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<dimen name="ukuran_teks_menu">16sp</dimen>-->
+    <!--<dimen name="lebar_popup_terminal">300dp</dimen>-->
+    <!--<dimen name="padding_item_menu">8dp</dimen>-->
+    <!--ukuran card radius-->
+    <dimen name="card_radius_small">4dp</dimen>
+    <dimen name="card_radius_medium">8dp</dimen>
+    <dimen name="card_radius_medium_max">12dp</dimen>
+    <dimen name="card_radius_large">14dp</dimen>
+    <dimen name="card_radius_large_max">16dp</dimen>
+    <!--ukuran card palette hasil-->
+    <dimen name="card_radius_max">100dp</dimen>
+    <!--ukuran img oval-->
+    <dimen name="img_radius_oval">50dp</dimen>
+    <!--ukuran card evalution-->
+    <dimen name="card_evalution_small">2dp</dimen>
+    <dimen name="card_evalution_medium">4dp</dimen>
+    <dimen name="card_evalution_large">6dp</dimen>
+    <dimen name="card_evalution_large_max">8dp</dimen>
+    <!--ukuran card stroke-->
+    <dimen name="card_stroke_small">0.8dp</dimen>
+    <dimen name="card_stroke_medium">1dp</dimen>
+    <dimen name="card_stroke_large">2dp</dimen>
+    <!--ukuran icon img-->
+    <dimen name="img_size_icon">18dp</dimen>
+    <!--ukuran icon pedding-->
+    <dimen name="img_size_pedding_small">2dp</dimen>
+    <dimen name="img_size_pedding">10dp</dimen>
+    <!--ukuran float alpha-->
+    <item name="alpha_size" type="dimen" format="float">0.80</item>
+</resources>

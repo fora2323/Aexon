@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="boxRadiusCutAngle" format="enum">
+        <enum name="extra_small" value="0" />
+        <enum name="small" value="1" />
+        <enum name="medium" value="2" />
+        <enum name="large" value="3" />
+        <enum name="extra_large" value="4" />
+    </attr>
+</resources>
