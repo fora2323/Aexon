@@ -1,8 +1,0 @@
-com.aexon.app-pngs-0 /storage/emulated/0/AndroStudioProjects/Aexon/app/build/generated/res/pngs/debug
-com.aexon.app-resValues-1 /storage/emulated/0/AndroStudioProjects/Aexon/app/build/generated/res/resValues/debug
-com.aexon.app-updated_navigation_xml-2 /storage/emulated/0/AndroStudioProjects/Aexon/app/build/generated/updated_navigation_xml/debug
-com.aexon.app-packageDebugResources-3 /storage/emulated/0/AndroStudioProjects/Aexon/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.aexon.app-packageDebugResources-4 /storage/emulated/0/AndroStudioProjects/Aexon/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.aexon.app-debug-5 /storage/emulated/0/AndroStudioProjects/Aexon/app/build/intermediates/merged_res/debug/mergeDebugResources
-com.aexon.app-debug-6 /storage/emulated/0/AndroStudioProjects/Aexon/app/src/debug/res
-com.aexon.app-main-7 /storage/emulated/0/AndroStudioProjects/Aexon/app/src/main/res
