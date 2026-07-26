@@ -28,7 +28,7 @@ Aexon's interface design was inspired by several projects:
 - **Magisk Manager** — [github.com/topjohnwu/Magisk](https://github.com/topjohnwu/Magisk)
 - **Shizuku** — [github.com/RikkaApps/Shizuku](https://github.com/RikkaApps/Shizuku)
 
-> For Shizuku, Aexon only uses the **official API library** (not mimicking the UI/UX code) for permission/privilege integration purposes: [github.com/RikkaApps/Shizuku-API](https://github.com/RikkaApps/Shizuku-API)
+> For Shizuku, Aexon only uses the **official API library** for permission/privilege integration purposes: [github.com/RikkaApps/Shizuku-API](https://github.com/RikkaApps/Shizuku-API)
 
 It must be emphasized: **the inspiration here is purely on the design/UI side**, not code reuse. All of Aexon's source code — native daemon, JNI, theming system, UI components — is written from scratch without borrowing from other projects.
 
