@@ -52,8 +52,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core:1.13.1'
     implementation 'dev.rikka.shizuku:api:13.0.0'
     implementation 'dev.rikka.shizuku:provider:13.0.0'
     implementation 'androidx.annotation:annotation:1.10.0'
