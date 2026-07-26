@@ -116,6 +116,7 @@ public class HomeFragmentActivity extends Fragment {
 	private LinearLayout fora_container;
 	private LinearLayout nezuka_container;
 	private LinearLayout linear31;
+	private LinearLayout linear33;
 	private AexonImageView imageview12;
 	private LinearLayout linear27;
 	private LinearLayout btn1;
@@ -137,6 +138,13 @@ public class HomeFragmentActivity extends Fragment {
 	private TextView action_chiko;
 	private ImageView icon3;
 	private TextView text3;
+	private AexonImageView imageview17;
+	private LinearLayout linear34;
+	private LinearLayout btn4;
+	private TextView title_nov;
+	private TextView action_nov;
+	private ImageView icon4;
+	private TextView text4;
 	
 	private Intent ax_intent = new Intent();
 	
@@ -206,6 +214,7 @@ public class HomeFragmentActivity extends Fragment {
 		fora_container = _view.findViewById(R.id.fora_container);
 		nezuka_container = _view.findViewById(R.id.nezuka_container);
 		linear31 = _view.findViewById(R.id.linear31);
+		linear33 = _view.findViewById(R.id.linear33);
 		imageview12 = _view.findViewById(R.id.imageview12);
 		linear27 = _view.findViewById(R.id.linear27);
 		btn1 = _view.findViewById(R.id.btn1);
@@ -227,6 +236,13 @@ public class HomeFragmentActivity extends Fragment {
 		action_chiko = _view.findViewById(R.id.action_chiko);
 		icon3 = _view.findViewById(R.id.icon3);
 		text3 = _view.findViewById(R.id.text3);
+		imageview17 = _view.findViewById(R.id.imageview17);
+		linear34 = _view.findViewById(R.id.linear34);
+		btn4 = _view.findViewById(R.id.btn4);
+		title_nov = _view.findViewById(R.id.title_nov);
+		action_nov = _view.findViewById(R.id.action_nov);
+		icon4 = _view.findViewById(R.id.icon4);
+		text4 = _view.findViewById(R.id.text4);
 		
 		card_status.setOnClickListener(_v -> {
 			if (getContext() != null) {
@@ -251,6 +267,30 @@ public class HomeFragmentActivity extends Fragment {
 		imageview11.setOnClickListener(_v -> {
 			ax_intent.setAction(Intent.ACTION_VIEW);
 			ax_intent.setData(Uri.parse(getString(R.string.url_tele)));
+			startActivity(ax_intent);
+		});
+		
+		btn1.setOnClickListener(_v -> {
+			ax_intent.setAction(Intent.ACTION_VIEW);
+			ax_intent.setData(Uri.parse(getString(R.string.link_github_fora2323)));
+			startActivity(ax_intent);
+		});
+		
+		btn2.setOnClickListener(_v -> {
+			ax_intent.setAction(Intent.ACTION_VIEW);
+			ax_intent.setData(Uri.parse(getString(R.string.link_github_nezuka)));
+			startActivity(ax_intent);
+		});
+		
+		btn3.setOnClickListener(_v -> {
+			ax_intent.setAction(Intent.ACTION_VIEW);
+			ax_intent.setData(Uri.parse(getString(R.string.link_github_chikoo)));
+			startActivity(ax_intent);
+		});
+		
+		btn4.setOnClickListener(_v -> {
+			ax_intent.setAction(Intent.ACTION_VIEW);
+			ax_intent.setData(Uri.parse(getString(R.string.link_github_nov)));
 			startActivity(ax_intent);
 		});
 	}
@@ -411,8 +451,13 @@ private final Aexon.OnBinderDeadListener binderDeadListener = () -> {
 		
 		//button follow btn1 btn2 btn3
 		btn1.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(radius_medium).stroke(stroke, _theme.getColorOutlineVariant()).ripple(_theme.getColorOnSurface()).build().build(getContext()));
+		btn1.setClickable(true);
 		btn2.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(radius_medium).stroke(stroke, _theme.getColorOutlineVariant()).ripple(_theme.getColorOnSurface()).build().build(getContext()));
+		btn2.setClickable(true);
 		btn3.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(radius_medium).stroke(stroke, _theme.getColorOutlineVariant()).ripple(_theme.getColorOnSurface()).build().build(getContext()));
+		btn3.setClickable(true);
+		btn4.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(radius_medium).stroke(stroke, _theme.getColorOutlineVariant()).ripple(_theme.getColorOnSurface()).build().build(getContext()));
+		btn4.setClickable(true);
 		
 		textview3.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)SketchwareUtil.getDip(getContext().getApplicationContext(), (int)(4)), _theme.getColorPrimaryDark()));
 		
@@ -482,13 +527,18 @@ private final Aexon.OnBinderDeadListener binderDeadListener = () -> {
 		title_chiko.setTextColor(_theme.getColorOnSurface());
 		action_chiko.setTextColor(_theme.getColorOnSurfaceVariant());
 		
+		title_nov.setTextColor(_theme.getColorOnSurface());
+		action_nov.setTextColor(_theme.getColorOnSurfaceVariant());
+		
 		text1.setTextColor(_theme.getColorOnSurface());
 		text2.setTextColor(_theme.getColorOnSurface());
 		text3.setTextColor(_theme.getColorOnSurface());
+		text4.setTextColor(_theme.getColorOnSurface());
 		
 		icon1.setColorFilter(_theme.getColorOnSurface(), PorterDuff.Mode.SRC_ATOP);
 		icon2.setColorFilter(_theme.getColorOnSurface(), PorterDuff.Mode.SRC_ATOP);
 		icon3.setColorFilter(_theme.getColorOnSurface(), PorterDuff.Mode.SRC_ATOP);
+		icon4.setColorFilter(_theme.getColorOnSurface(), PorterDuff.Mode.SRC_ATOP);
 	}
 	
 	
@@ -552,6 +602,9 @@ private final Aexon.OnBinderDeadListener binderDeadListener = () -> {
 		//chikoo
 		title_chiko.setText(getString(R.string.tag_username_chikoo) + "(" + getString(R.string.tag_name_chikoo) + ")");
 		action_chiko.setText(getString(R.string.tag_action_chikoo));
+		//nov
+		title_nov.setText(getString(R.string.tag_name_nov));
+		action_nov.setText(getString(R.string.tag_action_nov));
 	}
 	
 }
