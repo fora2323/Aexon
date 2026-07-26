@@ -1,5 +1,11 @@
 {
     "project_name": "Aexon",
-    "tabs": [],
-    "last_modified": 1784891883517
+    "tabs": [
+        {
+            "title": "build.gradle",
+            "path": "\/storage\/emulated\/0\/AndroStudioProjects\/Aexon\/app\/build.gradle",
+            "position": 0
+        }
+    ],
+    "last_modified": 1785043456987
 }
