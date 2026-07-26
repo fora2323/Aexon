@@ -47,6 +47,8 @@
     <string name="tag_btn_shizuku">Connect shizuku</string>
     <!-- enter pairing code button -->
     <string name="tag_btn_notif_enter">Enter pairing code</string>
+    <!-- enable notifications -->
+    <string name="tag_btn_enable_notif">Enable Notification</string>
     <!-- title all usage -->
     <string name="tag_msg_cmd">There are some other considerations, please confirm that you have read the help first.</string>
     <!-- picker dialog -->
