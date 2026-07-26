@@ -1,12 +1,14 @@
 package com.aexon.theme.foundation
 
+import androidx.annotation.ColorInt
 import com.aexon.theme.hct.utils.AexonColorUtils
 import kotlin.math.atan2
 import kotlin.math.sqrt
 
+// Hue + chroma dari ruang warna Lab, dipakai buat deteksi seed color grayscale
 class AexonChrome private constructor(val hue: Double, val chroma: Double) {
     companion object {
-        fun fromInt(argb: Int): AexonChrome {
+        fun fromInt(@ColorInt argb: Int): AexonChrome {
             val lab = AexonColorUtils.labFromArgb(argb)
             val a = lab[1]
             val b = lab[2]

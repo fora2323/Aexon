@@ -27,6 +27,7 @@ import android.widget.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.*;
 import com.aexon.material.aexonloading.AexonLoading;
 import com.aexon.material.viewpager.AexonViewPager;
 import com.aexon.view.AexonNavigationBar;

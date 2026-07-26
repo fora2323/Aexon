@@ -1,46 +1,33 @@
 package com.aexon;
 
-import android.animation.*;
-import android.app.*;
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.*;
 import android.content.Intent;
-import android.content.res.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.media.*;
-import android.net.*;
+import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.os.*;
-import android.text.*;
-import android.text.style.*;
-import android.util.*;
-import android.view.*;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.Settings;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.view.View.*;
-import android.view.animation.*;
-import android.webkit.*;
-import android.widget.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import com.aexon.widget.AexonButton;
-import java.io.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
-import org.json.*;
-import com.aexon.theme.AexonTheme;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.aexon.aexon.AexonWindowHelper;
-import com.aexon.starter.AexonShizukuHelper;
+import com.aexon.material.dialog.AexonAlertDialog;
 import com.aexon.material.toasty.AexonToast;
+import com.aexon.starter.AexonShizukuHelper;
 import com.aexon.starter.AexonStarter;
-import android.text.method.LinkMovementMethod;
-import com.aexon.material.dialog.AexonAlertDialog;
+import com.aexon.theme.AexonTheme;
+import com.aexon.widget.AexonButton;
 
 public class ActivasiActivity extends Activity {
 	
@@ -89,14 +76,14 @@ public class ActivasiActivity extends Activity {
 	private Intent aexon_intent = new Intent();
 	
 	@Override
-	protected void onCreate(Bundle _savedInstanceState) {
+	protected void onCreate(@Nullable Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
 		setContentView(R.layout.activasi);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
-	private void initialize(Bundle _savedInstanceState) {
+	private void initialize(@Nullable Bundle _savedInstanceState) {
 		shizuku = new AexonShizukuHelper(this);
 		linear12 = findViewById(R.id.linear12);
 		toolbar = findViewById(R.id.toolbar);
@@ -212,11 +199,13 @@ public class ActivasiActivity extends Activity {
 		textview7.setText(Html.fromHtml(getString(R.string.tag_dec_rooted), Html.FROM_HTML_MODE_LEGACY));
 		textview7.setLinkTextColor(0xFF00BCD4);
 		textview7.setMovementMethod(LinkMovementMethod.getInstance());
+		
 		AexonTheme theme = AexonTheme.getInstance();
 		if (Aexon.isBinder()) {
 			onBackPressed();
 			return;
 		}
+		
 		imageview1.setColorFilter(theme.getColorOnSurface(), PorterDuff.Mode.SRC_ATOP);
 		imageview1.setBackground(AexonDrawable.oval(this, theme.getColorSurfaceContainer()));
 		imageview1.setClickable(true);
@@ -227,21 +216,22 @@ public class ActivasiActivity extends Activity {
 		imageview7.setColorFilter(theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
 		toolbar.setBackgroundColor(theme.getColorSurface());
 		vscroll1.setBackgroundColor(theme.getColorSurface());
-		//card card1 & card2 & card3
+		
+		//card card1 & card2 & card3 & card4
 		card1.setBackground(new AexonDrawable.Builder(theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(this, R.dimen.card_radius_medium)).build().build(ActivasiActivity.this));
 		card2.setBackground(new AexonDrawable.Builder(theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(this, R.dimen.card_radius_medium)).build().build(ActivasiActivity.this));
 		card3.setBackground(new AexonDrawable.Builder(theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(this, R.dimen.card_radius_medium)).build().build(ActivasiActivity.this));
 		card4.setBackground(new AexonDrawable.Builder(theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(this, R.dimen.card_radius_medium)).build().build(ActivasiActivity.this));
 		
-		
-		//warna icon button
+		//warna icon button 
 		connect_shizuku.setIconTint(theme.getColorOnPrimary());
 		start_shizuku.setIconTint(theme.getColorOnPrimary());
 		view_cmd.setIconTint(theme.getColorOnPrimary());
 		start_root.setIconTint(theme.getColorOnPrimary());
 		stepbystep.setIconTint(theme.getColorOnPrimary());
-		connect_pair.setIconTint(theme.getColorOnPrimary());
+		connect_pair.setIconTint(theme.getColorOnPrimary()); 
 		start_pair.setIconTint(theme.getColorOnPrimary());
+		
 		connect_shizuku.setBackgroundColor(theme.getColorPrimary());
 		start_shizuku.setBackgroundColor(theme.getColorPrimary());
 		view_cmd.setBackgroundColor(theme.getColorPrimary());
@@ -257,6 +247,7 @@ public class ActivasiActivity extends Activity {
 		stepbystep.setTextColor(theme.getColorOnPrimary());
 		connect_pair.setTextColor(theme.getColorOnPrimary());
 		start_pair.setTextColor(theme.getColorOnPrimary());
+		
 		textview1.setTextColor(theme.getColorOnSurface());
 		textview2.setTextColor(theme.getColorOnSurface());
 		textview3.setTextColor(theme.getColorOnSurfaceVariant());
@@ -269,6 +260,52 @@ public class ActivasiActivity extends Activity {
 		textview10.setTextColor(theme.getColorOnSurfaceVariant());
 	}
 	
+	@SuppressLint("SetTextI18n")
+	private void updateConnectPairState() {
+		boolean isNotificationGranted = NotificationManagerCompat.from(this).areNotificationsEnabled();
+		
+		if (!isNotificationGranted) {
+			// Jika notifikasi belum diizinkan
+			connect_pair.setIcon(R.drawable.ic_notifications);
+			connect_pair.setText(getString(R.string.tag_btn_enable_notif));
+			
+			connect_pair.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(@NonNull View _view) {
+					// Pengecekan versi OS yang aman
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+						openNotificationSettingsModern();
+					} else {
+						openNotificationSettingsLegacy();
+					}
+				}
+			});
+		} else {
+			// Jika notifikasi sudah diizinkan
+			connect_pair.setIcon(R.drawable.ic_url);
+			connect_pair.setText(getString(R.string.tag_btn_pairing));
+			
+			connect_pair.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(@NonNull View _view) {
+					// Masukkan logika connect pair di sini
+				}
+			});
+		}
+	}
+	
+	@RequiresApi(api = Build.VERSION_CODES.O)
+	private void openNotificationSettingsModern() {
+		Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+		intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+		startActivity(intent);
+	}
+	
+	private void openNotificationSettingsLegacy() {
+		Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+		intent.setData(Uri.parse("package:" + getPackageName()));
+		startActivity(intent);
+	}
 	
 	@Override
 	public void onBackPressed() {
@@ -279,7 +316,7 @@ public class ActivasiActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+		updateConnectPairState();
 	}
 	
 	@Override
@@ -299,4 +336,4 @@ public class ActivasiActivity extends Activity {
 		super.onDestroy();
 		shizuku.destroy();
 	}
-}
+}

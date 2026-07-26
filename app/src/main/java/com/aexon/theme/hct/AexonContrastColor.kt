@@ -1,17 +1,19 @@
 package com.aexon.theme.hct
 
-import com.aexon.theme.hct.utils.AexonColorUtils
+import androidx.annotation.ColorInt
+import androidx.core.graphics.ColorUtils
 
+/**
+* Rasio kontras WCAG antara 2 warna — dilimpahkan penuh ke
+* androidx.core.graphics.ColorUtils.calculateContrast (rumusnya identik
+* dengan implementasi manual sebelumnya, cuma dipindah ke fungsi teruji).
+*/
 object AexonContrastColor {
-    fun calculateContrast(foreground: Int, background: Int): Double {
-        val l1 = AexonColorUtils.yFromLstar(AexonColorUtils.lstarFromArgb(foreground)) / 100.0
-        val l2 = AexonColorUtils.yFromLstar(AexonColorUtils.lstarFromArgb(background)) / 100.0
-        val lighter = maxOf(l1, l2)
-        val darker = minOf(l1, l2)
-        return (lighter + 0.05) / (darker + 0.05)
-    }
-    
-    fun isContrastValid(foreground: Int, background: Int, minContrastRatio: Double): Boolean {
-        return calculateContrast(foreground, background) >= minContrastRatio
-    }
+	fun calculateContrast(@ColorInt foreground: Int, @ColorInt background: Int): Double {
+		return ColorUtils.calculateContrast(foreground, background)
+	}
+	
+	fun isContrastValid(@ColorInt foreground: Int, @ColorInt background: Int, minContrastRatio: Double): Boolean {
+		return calculateContrast(foreground, background) >= minContrastRatio
+	}
 }
