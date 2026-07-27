@@ -1,4 +1,4 @@
-@file:Suppress("DEPRECATION")
+@file:Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
 package com.aexon.starter
 
 import android.app.DialogFragment
