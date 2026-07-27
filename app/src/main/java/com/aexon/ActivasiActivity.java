@@ -1,25 +1,18 @@
 package com.aexon;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.aexon.aexon.AexonWindowHelper;
 import com.aexon.material.dialog.AexonAlertDialog;
@@ -45,7 +38,6 @@ public class ActivasiActivity extends Activity {
 	private TextView textview1;
 	private LinearLayout linear1;
 	private LinearLayout card1;
-	private LinearLayout card4;
 	private LinearLayout card2;
 	private LinearLayout card3;
 	private LinearLayout linear11;
@@ -54,14 +46,6 @@ public class ActivasiActivity extends Activity {
 	private AexonButton start_shizuku;
 	private ImageView imageview6;
 	private TextView textview2;
-	private LinearLayout linear14;
-	private TextView textview8;
-	private TextView textview10;
-	private AexonButton stepbystep;
-	private AexonButton connect_pair;
-	private AexonButton start_pair;
-	private ImageView imageview7;
-	private TextView textview9;
 	private LinearLayout linear3;
 	private TextView textview5;
 	private AexonButton view_cmd;
@@ -92,7 +76,6 @@ public class ActivasiActivity extends Activity {
 		textview1 = findViewById(R.id.textview1);
 		linear1 = findViewById(R.id.linear1);
 		card1 = findViewById(R.id.card1);
-		card4 = findViewById(R.id.card4);
 		card2 = findViewById(R.id.card2);
 		card3 = findViewById(R.id.card3);
 		linear11 = findViewById(R.id.linear11);
@@ -101,14 +84,6 @@ public class ActivasiActivity extends Activity {
 		start_shizuku = findViewById(R.id.start_shizuku);
 		imageview6 = findViewById(R.id.imageview6);
 		textview2 = findViewById(R.id.textview2);
-		linear14 = findViewById(R.id.linear14);
-		textview8 = findViewById(R.id.textview8);
-		textview10 = findViewById(R.id.textview10);
-		stepbystep = findViewById(R.id.stepbystep);
-		connect_pair = findViewById(R.id.connect_pair);
-		start_pair = findViewById(R.id.start_pair);
-		imageview7 = findViewById(R.id.imageview7);
-		textview9 = findViewById(R.id.textview9);
 		linear3 = findViewById(R.id.linear3);
 		textview5 = findViewById(R.id.textview5);
 		view_cmd = findViewById(R.id.view_cmd);
@@ -213,40 +188,29 @@ public class ActivasiActivity extends Activity {
 		imageview2.setColorFilter(theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
 		imageview4.setColorFilter(theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
 		imageview6.setColorFilter(theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
-		imageview7.setColorFilter(theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
 		toolbar.setBackgroundColor(theme.getColorSurface());
 		vscroll1.setBackgroundColor(theme.getColorSurface());
 		
-		//card card1 & card2 & card3 & card4
+		// card card1 & card2 & card3
 		card1.setBackground(new AexonDrawable.Builder(theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(this, R.dimen.card_radius_medium)).build().build(ActivasiActivity.this));
 		card2.setBackground(new AexonDrawable.Builder(theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(this, R.dimen.card_radius_medium)).build().build(ActivasiActivity.this));
 		card3.setBackground(new AexonDrawable.Builder(theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(this, R.dimen.card_radius_medium)).build().build(ActivasiActivity.this));
-		card4.setBackground(new AexonDrawable.Builder(theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(this, R.dimen.card_radius_medium)).build().build(ActivasiActivity.this));
 		
-		//warna icon button 
+		// warna icon button 
 		connect_shizuku.setIconTint(theme.getColorOnPrimary());
 		start_shizuku.setIconTint(theme.getColorOnPrimary());
 		view_cmd.setIconTint(theme.getColorOnPrimary());
 		start_root.setIconTint(theme.getColorOnPrimary());
-		stepbystep.setIconTint(theme.getColorOnPrimary());
-		connect_pair.setIconTint(theme.getColorOnPrimary()); 
-		start_pair.setIconTint(theme.getColorOnPrimary());
 		
 		connect_shizuku.setBackgroundColor(theme.getColorPrimary());
 		start_shizuku.setBackgroundColor(theme.getColorPrimary());
 		view_cmd.setBackgroundColor(theme.getColorPrimary());
 		start_root.setBackgroundColor(theme.getColorPrimary());
-		stepbystep.setBackgroundColor(theme.getColorPrimary());
-		connect_pair.setBackgroundColor(theme.getColorPrimary());
-		start_pair.setBackgroundColor(theme.getColorPrimary());
 		AexonWindowHelper.setWindowStyle(getWindow(), theme.getColorSurface());
 		start_root.setTextColor(theme.getColorOnPrimary());
 		view_cmd.setTextColor(theme.getColorOnPrimary());
 		connect_shizuku.setTextColor(theme.getColorOnPrimary());
 		start_shizuku.setTextColor(theme.getColorOnPrimary());
-		stepbystep.setTextColor(theme.getColorOnPrimary());
-		connect_pair.setTextColor(theme.getColorOnPrimary());
-		start_pair.setTextColor(theme.getColorOnPrimary());
 		
 		textview1.setTextColor(theme.getColorOnSurface());
 		textview2.setTextColor(theme.getColorOnSurface());
@@ -255,68 +219,12 @@ public class ActivasiActivity extends Activity {
 		textview5.setTextColor(theme.getColorOnSurfaceVariant());
 		textview6.setTextColor(theme.getColorOnSurface());
 		textview7.setTextColor(theme.getColorOnSurfaceVariant());
-		textview8.setTextColor(theme.getColorOnSurfaceVariant());
-		textview9.setTextColor(theme.getColorOnSurface());
-		textview10.setTextColor(theme.getColorOnSurfaceVariant());
-	}
-	
-	@SuppressLint("SetTextI18n")
-	private void updateConnectPairState() {
-		boolean isNotificationGranted = NotificationManagerCompat.from(this).areNotificationsEnabled();
-		
-		if (!isNotificationGranted) {
-			// Jika notifikasi belum diizinkan
-			connect_pair.setIcon(R.drawable.ic_notifications);
-			connect_pair.setText(getString(R.string.tag_btn_enable_notif));
-			
-			connect_pair.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(@NonNull View _view) {
-					// Pengecekan versi OS yang aman
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-						openNotificationSettingsModern();
-					} else {
-						openNotificationSettingsLegacy();
-					}
-				}
-			});
-		} else {
-			// Jika notifikasi sudah diizinkan
-			connect_pair.setIcon(R.drawable.ic_url);
-			connect_pair.setText(getString(R.string.tag_btn_pairing));
-			
-			connect_pair.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(@NonNull View _view) {
-					// Masukkan logika connect pair di sini
-				}
-			});
-		}
-	}
-	
-	@RequiresApi(api = Build.VERSION_CODES.O)
-	private void openNotificationSettingsModern() {
-		Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-		intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
-		startActivity(intent);
-	}
-	
-	private void openNotificationSettingsLegacy() {
-		Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-		intent.setData(Uri.parse("package:" + getPackageName()));
-		startActivity(intent);
 	}
 	
 	@Override
 	public void onBackPressed() {
 		super.finish();
 		overridePendingTransition(R.anim.fade_in_back, R.anim.fade_out_back);
-	}
-	
-	@Override
-	public void onResume() {
-		super.onResume();
-		updateConnectPairState();
 	}
 	
 	@Override

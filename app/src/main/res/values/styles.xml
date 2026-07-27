@@ -1,5 +1,5 @@
 <resources>
-    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:statusBarColor">@color/colorSurface</item>
         <item name="android:navigationBarColor">@color/colorSurface</item>
         <item name="android:windowLightStatusBar">false</item>
@@ -21,6 +21,6 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
     <style name="Base.TextViewStyle" parent="@android:style/Widget.TextView">
-        <item name="android:letterSpacing">0.05</item>
+        <item name="android:letterSpacing">0.04</item>
     </style>
 </resources>

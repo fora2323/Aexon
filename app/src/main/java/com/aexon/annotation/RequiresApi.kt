@@ -1,4 +1,3 @@
-@file:Suppress("DEPRECATION")
 package com.aexon.annotation
 
 import kotlin.annotation.AnnotationTarget

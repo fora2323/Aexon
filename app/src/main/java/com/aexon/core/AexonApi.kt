@@ -1,4 +1,3 @@
-@file:Suppress("DEPRECATION")
 package com.aexon.core
 
 import android.os.Build

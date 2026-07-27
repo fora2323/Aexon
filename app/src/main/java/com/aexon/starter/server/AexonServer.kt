@@ -1,4 +1,3 @@
-@file:Suppress("DEPRECATION")
 package com.aexon.starter.server
 
 import java.io.BufferedReader
