@@ -1,3 +1,4 @@
+@file:Suppress("DEPRECATION")
 package com.aexon.theme.foundation
 
 import androidx.annotation.ColorInt
