@@ -58,3 +58,13 @@ dependencies {
     implementation 'dev.rikka.shizuku:provider:13.0.0'
     implementation 'androidx.annotation:annotation:1.10.0'
 }
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        freeCompilerArgs += ["-nowarn"]
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:-deprecation"
+}
