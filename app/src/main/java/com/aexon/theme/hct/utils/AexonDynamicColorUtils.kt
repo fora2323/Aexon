@@ -3,11 +3,6 @@ package com.aexon.theme.hct.utils
 import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
 
-/**
-* Blend/darken/lighten antar warna ARGB — inti blend dilimpahkan ke
-* androidx.core.graphics.ColorUtils.blendARGB (lerp per-channel, hasil
-* sama dengan implementasi manual sebelumnya).
-*/
 object AexonDynamicColorUtils {
 	@ColorInt
 	fun blend(@ColorInt colorFrom: Int, @ColorInt colorTo: Int, ratio: Double): Int {

@@ -6,23 +6,13 @@ import androidx.core.graphics.ColorUtils
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
-/**
-* Konversi warna low-level (linear RGB <-> XYZ <-> Lab).
-* Konversi XYZ & Lab dilimpahkan ke androidx.core.graphics.ColorUtils
-* (sudah teruji, white point D65-nya sama persis dengan yang dipakai di sini).
-* Bagian linear RGB & L* tetap custom karena androidx tidak expose fungsi itu langsung.
-*/
 object AexonColorUtils {
 	
 	fun linrgbFromArgb(@ColorInt argb: Int): DoubleArray {
 		val r = (argb shr 16) and 0xff
 		val g = (argb shr 8) and 0xff
 		val b = argb and 0xff
-		return doubleArrayOf(
-		linearized(r),
-		linearized(g),
-		linearized(b)
-		)
+		return doubleArrayOf(linearized(r),linearized(g),linearized(b))
 	}
 	
 	@ColorInt
