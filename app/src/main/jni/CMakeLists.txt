@@ -18,4 +18,3 @@ add_library(native SHARED native.cpp ax_deamon_info.cpp ax_loging.cpp ax_memory.
 # Link library log untuk modul native
 find_library(log-lib log)
 target_link_libraries(native ${log-lib})
-0
