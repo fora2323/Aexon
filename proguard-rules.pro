@@ -1,5 +1,3 @@
--repackageclasses ''            
--flattenpackagehierarchy ''   
 -allowaccessmodification         
 -ignorewarnings                  
 -dontnote                        
