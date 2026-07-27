@@ -9,20 +9,11 @@ set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} -Wl,--gc-s
 set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} -Wl,--gc-sections -Wl,--strip-all")
 
 # Output binary executable dari aexon.cpp yang diberi nama libaexon.so
-add_executable(aexon
-    aexon.cpp
-    ax_loging.cpp
-    ax_memory.cpp
-)
+add_executable(aexon aexon.cpp ax_loging.cpp ax_memory.cpp)
 set_target_properties(aexon PROPERTIES OUTPUT_NAME "libaexon.so")
 
 # Target library shared native (.so)
-add_library(native SHARED
-    native.cpp
-    ax_deamon_info.cpp
-    ax_loging.cpp
-    ax_memory.cpp
-)
+add_library(native SHARED native.cpp ax_deamon_info.cpp ax_loging.cpp ax_memory.cpp)
 
 # Link library log untuk modul native
 find_library(log-lib log)
