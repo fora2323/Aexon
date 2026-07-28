@@ -15,6 +15,10 @@ android {
         versionCode 1018
         versionName "1.4"
     }
+    
+    buildFeatures {
+        viewBinding true
+    }
 
     buildTypes {
         debug {
