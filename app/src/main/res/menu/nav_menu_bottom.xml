@@ -1,15 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/nav_icon_home"
-        android:title="@string/tag_nav_home" />
+        android:title="@string/tag_title_home_nav" />
     <item
-        android:id="@+id/nav_list"
+        android:id="@+id/nav_widget"
         android:icon="@drawable/nav_icon_widget"
-        android:title="@string/tag_nav_aexon" />
+        android:title="@string/tag_title_app_nav" />
+    <item
+        android:id="@+id/nav_plugin"
+        android:icon="@drawable/nav_icon_plugin"
+        android:title="@string/tag_title_plugin_nav" />
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/nav_icon_settings"
-        android:title="@string/tag_nav_settings" />
+        android:title="@string/tag_title_settings_nav" />
 </menu>

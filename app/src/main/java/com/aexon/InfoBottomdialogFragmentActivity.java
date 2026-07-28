@@ -24,20 +24,21 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.aexon.databinding.*;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import java.io.*;
 import java.text.*;
 import java.util.*;
 import java.util.regex.*;
 import org.json.*;
 
-public class HomeFragmentActivity extends Fragment {
+public class InfoBottomdialogFragmentActivity extends BottomSheetDialogFragment {
 	
-	private HomeFragmentBinding binding;
+	private InfoBottomdialogFragmentBinding binding;
 	
 	@NonNull
 	@Override
 	public View onCreateView(@NonNull LayoutInflater _inflater, @Nullable ViewGroup _container, @Nullable Bundle _savedInstanceState) {
-		binding = HomeFragmentBinding.inflate(_inflater, _container, false);
+		binding = InfoBottomdialogFragmentBinding.inflate(_inflater, _container, false);
 		initialize(_savedInstanceState, binding.getRoot());
 		initializeLogic();
 		return binding.getRoot();

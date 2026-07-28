@@ -30,14 +30,14 @@ import java.util.*;
 import java.util.regex.*;
 import org.json.*;
 
-public class HomeFragmentActivity extends Fragment {
+public class PluginFragmentActivity extends Fragment {
 	
-	private HomeFragmentBinding binding;
+	private PluginFragmentBinding binding;
 	
 	@NonNull
 	@Override
 	public View onCreateView(@NonNull LayoutInflater _inflater, @Nullable ViewGroup _container, @Nullable Bundle _savedInstanceState) {
-		binding = HomeFragmentBinding.inflate(_inflater, _container, false);
+		binding = PluginFragmentBinding.inflate(_inflater, _container, false);
 		initialize(_savedInstanceState, binding.getRoot());
 		initializeLogic();
 		return binding.getRoot();

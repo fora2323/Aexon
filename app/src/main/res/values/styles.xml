@@ -1,11 +1,17 @@
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:statusBarColor">@color/colorSurface</item>
-        <item name="android:navigationBarColor">@color/colorSurface</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
-        <item name="android:colorBackground">@color/colorSurface</item>
-        <item name="android:windowBackground">@color/colorSurface</item>
+    <style name="AppTheme" parent="Theme.Base.Aexon">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        
+        <item name="android:navigationBarDividerColor">?attr/colorOutlineVariant</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+        <item name="android:windowLightNavigationBar">?attr/isLightTheme</item>
+        
+        <item name="android:colorBackground">?attr/colorSurface</item>
+        <item name="android:windowBackground">?attr/colorSurface</item>
+        
         <item name="android:fontFamily">@font/f4</item>
         <item name="android:textViewStyle">@style/Base.TextViewStyle</item>
         <item name="android:windowAnimationStyle">@null</item>

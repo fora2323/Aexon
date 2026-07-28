@@ -11,6 +11,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:padding="8dp"
-		android:background="#F44336"
-		android:orientation="vertical" />
+		android:background="#E91E63"
+		android:orientation="horizontal" />
 </LinearLayout>

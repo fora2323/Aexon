@@ -30,20 +30,21 @@ import java.util.*;
 import java.util.regex.*;
 import org.json.*;
 
-public class HomeFragmentActivity extends Fragment {
+public class ActivationActivity extends AppCompatActivity {
 	
-	private HomeFragmentBinding binding;
+	private ActivationBinding binding;
 	
-	@NonNull
 	@Override
-	public View onCreateView(@NonNull LayoutInflater _inflater, @Nullable ViewGroup _container, @Nullable Bundle _savedInstanceState) {
-		binding = HomeFragmentBinding.inflate(_inflater, _container, false);
-		initialize(_savedInstanceState, binding.getRoot());
+	protected void onCreate(Bundle _savedInstanceState) {
+		super.onCreate(_savedInstanceState);
+		EdgeToEdge.enable(this);
+		binding = ActivationBinding.inflate(getLayoutInflater());
+		setContentView(binding.getRoot());
+		initialize(_savedInstanceState);
 		initializeLogic();
-		return binding.getRoot();
 	}
 	
-	private void initialize(Bundle _savedInstanceState, View _view) {
+	private void initialize(Bundle _savedInstanceState) {
 	}
 	
 	private void initializeLogic() {
