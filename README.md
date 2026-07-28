@@ -4,7 +4,7 @@
 
 <h1 align="center">Aexon</h1>
 
-<p align="center">Root/system management companion for Android — built entirely from scratch</p>
+<p align="center">Root/system management companion for Android</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-GPL--3.0-blue">
@@ -17,7 +17,7 @@
 
 ## About Aexon
 
-Aexon is a companion application for managing system-level shell daemons on Android, complete with native watchdog, signature verification, and dynamic theming (HCT/CAM16-based). The entire codebase is written from scratch without reusing code from other projects.
+Aexon is a companion application for managing system-level shell daemons on Android, complete with native watchdog, signature verification, and dynamic theming (HCT/CAM16-based). Aexon's own code — native daemon, JNI, theming system, UI components — is written in-house. Some functionality integrates third-party open-source components; see [Third-Party Components](#third-party-components) below for full attribution.
 
 ## Inspiration
 
@@ -28,9 +28,34 @@ Aexon's interface design was inspired by several projects:
 - **Magisk Manager** — [github.com/topjohnwu/Magisk](https://github.com/topjohnwu/Magisk)
 - **Shizuku** — [github.com/RikkaApps/Shizuku](https://github.com/RikkaApps/Shizuku)
 
-> For Shizuku, Aexon only uses the **official API library** for permission/privilege integration purposes: [github.com/RikkaApps/Shizuku-API](https://github.com/RikkaApps/Shizuku-API)
+> The inspiration listed above is on the design/UI side. For code-level integrations, see below.
 
-It must be emphasized: **the inspiration here is purely on the design/UI side**, not code reuse. All of Aexon's source code — native daemon, JNI, theming system, UI components — is written from scratch without borrowing from other projects.
+## Third-Party Components
+
+Aexon integrates the following third-party open-source components. Each retains its original license; inclusion here does not change Aexon's own GPL-3.0 licensing.
+
+### Shizuku
+
+<!-- PILIH SALAH SATU SESUAI CARA INTEGRASI TEMEN KAMU -->
+
+<!-- OPSI A — kalau cuma pakai Shizuku-API resmi (dependency, bukan copy kode) -->
+Aexon uses the official [Shizuku API](https://github.com/RikkaApps/Shizuku-API) library for permission/privilege integration, licensed under the **Apache License 2.0**. No Shizuku source code is copied into Aexon's own codebase.
+
+<!-- OPSI B — kalau kode Shizuku (bukan cuma API) di-copy-paste / diadaptasi ke source Aexon -->
+Aexon incorporates and adapts source code from [Shizuku](https://github.com/RikkaApps/Shizuku) by RikkaApps, licensed under the **Apache License 2.0**. Modified files retain their original copyright notice along with a note indicating the changes made, per the terms of the Apache License 2.0. See [`licenses/shizuku-LICENSE`](licenses/shizuku-LICENSE) and [`NOTICE`](NOTICE) for full attribution.
+
+<!-- OPSI C — kalau di-embed sebagai module/submodule terpisah, tidak dicampur ke source Aexon -->
+Aexon embeds [Shizuku](https://github.com/RikkaApps/Shizuku) by RikkaApps as a separate module, licensed under the **Apache License 2.0**. See [`licenses/shizuku-LICENSE`](licenses/shizuku-LICENSE) for the full license text.
+
+### BusyBox
+
+<!-- PILIH SALAH SATU SESUAI CARA DISTRIBUSI -->
+
+<!-- OPSI A — busybox binary dibundle di dalam APK -->
+Aexon bundles a BusyBox binary (via Magisk's build, originally from [BusyBox](https://busybox.net/)), licensed under **GPL-2.0**. In accordance with GPL-2.0, the corresponding source code is available at: `<link ke source busybox versi yang dipakai>`. If you received this binary without accompanying source, you may request it by opening an issue on this repository.
+
+<!-- OPSI B — busybox binary tidak dibundle, hanya dipanggil/didownload dari sumber lain saat runtime -->
+Aexon can optionally invoke a BusyBox binary (via Magisk, originally from [BusyBox](https://busybox.net/), licensed under GPL-2.0) if present on the device at runtime. Aexon does not bundle, redistribute, or modify this binary — it is expected to already be provided by the user's root/Magisk environment.
 
 ## License
 
@@ -41,5 +66,7 @@ This means:
 - Free to use, study, modify, and redistribute
 - Every derivative/fork **must** remain open-source with the same license (GPL-3.0)
 - No warranty for the use of this application
+
+Third-party components listed above retain their own original licenses (see [Third-Party Components](#third-party-components)).
 
 See the [LICENSE](LICENSE) file for the full text.
