@@ -1,4 +1,6 @@
 <resources>
+    <!-- title app -->
+    <string name="app_name"> translatable="false">Aexon</string>
     <!-- title menu nav -->
     <string name="tag_title_home_nav">Home</string>
     <string name="tag_title_app_nav">Apps</string>

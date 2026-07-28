@@ -39,7 +39,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.aexon.corex.AexonFragmentAdapter;
-import com.aexon.viewx.AexonNavigationBar;
+import com.aexon.viewx.AexonNavigationBar;
+
 
 public class MainActivity extends AppCompatActivity {
 	
@@ -114,5 +115,4 @@ ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, insets) -> {
 			}
 		});
 	}
-	
-}
+}
