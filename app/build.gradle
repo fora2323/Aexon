@@ -15,11 +15,19 @@ android {
         versionCode 1018
         versionName "1.4"
     }
-    
+
     buildFeatures {
         viewBinding true
     }
-
+    
+    signingConfigs {
+        sign {
+            storeFile file('key.jks')
+            keyAlias 'myKey'
+            storePassword 'novzzmanager'
+            keyPassword 'novzzmanager'
+        }
+    }
     buildTypes {
         debug {
             minifyEnabled false
@@ -28,6 +36,7 @@ android {
             debuggable true
         }
         release {
+            signingConfig signingConfigs.sign
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), rootProject.file('proguard-rules.pro')
@@ -50,7 +59,7 @@ dependencies {
 
     implementation 'dev.rikka.shizuku:api:13.0.0'
     implementation 'dev.rikka.shizuku:provider:13.0.0'
-    
+
     implementation 'com.google.android.material:material:1.14.0'
 
     implementation 'androidx.annotation:annotation:1.10.0'
