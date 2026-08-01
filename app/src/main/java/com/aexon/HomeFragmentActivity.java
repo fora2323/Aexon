@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import com.aexon.widget.AexonCompatButton;
 import com.aexon.widget.AexonImageView;
 import java.io.*;
@@ -43,7 +42,8 @@ import android.content.pm.PackageInfo;
 import com.aexon.aexon.animation.AexonAnimationCompat;
 import android.view.animation.PathInterpolator;
 import com.aexon.theme.AexonThemeListener;
-import com.aexon.theme.AexonTheme;
+import com.aexon.theme.AexonTheme;
+
 
 public class HomeFragmentActivity extends Fragment {
 	
@@ -601,4 +601,4 @@ private final Aexon.OnBinderDeadListener binderDeadListener = () -> {
 		action_nov.setText(getString(R.string.tag_action_nov));
 	}
 	
-}
+}

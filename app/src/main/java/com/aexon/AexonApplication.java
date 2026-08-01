@@ -48,7 +48,6 @@ public class AexonApplication extends Application {
             startActivity(intent);
         } catch (Exception ignored) {
         }
-        SketchLogger.broadcastLog(Log.getStackTraceString(throwable));
         Process.killProcess(Process.myPid());
         System.exit(1);
     }

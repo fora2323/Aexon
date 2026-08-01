@@ -26,7 +26,6 @@ import android.widget.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import com.aexon.material.aexonswitch.AexonSwitch;
 import com.aexon.material.button.AexonRadioButton;
 import java.io.*;
@@ -38,7 +37,8 @@ import com.aexon.theme.AexonTheme;
 import com.aexon.theme.AexonThemeListener;
 import com.aexon.aexon.ColorPickerDialog;
 import com.aexon.aexon.AexonWindowHelper;
-import com.aexon.aexon.animation.AexonAnimationCompat;
+import com.aexon.aexon.animation.AexonAnimationCompat;
+
 
 public class AppearanceActivity extends Activity {
 	
@@ -320,4 +320,4 @@ public class AppearanceActivity extends Activity {
 		light_mode.setChecked(_mode == AexonTheme.MODE_LIGHT);
 	}
 	
-}
+}

@@ -31,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import com.aexon.material.aexonloading.AexonLoading;
 import com.aexon.material.edittext.AexonEditText;
 import java.io.*;
@@ -45,7 +44,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import com.aexon.widget.AexonPopupMenu;
 import com.aexon.theme.AexonTheme;
-import com.aexon.theme.AexonThemeListener;
+import com.aexon.theme.AexonThemeListener;
+
 
 public class AexonFragmentActivity extends Fragment {
 	
@@ -399,4 +399,4 @@ public class AexonFragmentActivity extends Fragment {
 			return _view;
 		}
 	}
-}
+}

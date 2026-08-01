@@ -25,7 +25,6 @@ import android.webkit.*;
 import android.widget.*;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import com.aexon.widget.AexonCompatButton;
 import com.aexon.widget.AexonImageView;
 import java.io.*;
@@ -34,7 +33,8 @@ import java.util.*;
 import java.util.regex.*;
 import org.json.*;
 import com.aexon.theme.AexonTheme;
-import com.aexon.theme.AexonThemeListener;
+import com.aexon.theme.AexonThemeListener;
+
 
 public class InfoDialogFragmentActivity extends AexonBottomSheetFragment {
 	
@@ -139,4 +139,4 @@ public void onViewCreated(View view, Bundle savedInstanceState) {
 		textview3.setTextColor(theme.getColorOnSurfaceVariant());
 	}
 	
-}
+}
