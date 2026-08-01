@@ -1,0 +1,19 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:gravity="center"
+	android:orientation="vertical">
+	<com.aexon.material.aexonloading.AexonLoading
+		android:id="@+id/loadingaexon1"
+		android:layout_width="80dp"
+		android:layout_height="80dp"
+		android:orientation="vertical"
+		app:thumb_color="@color/colorPrimary"
+		app:track_color="@color/colorSurfaceContainer"
+		app:indeterminate="true"
+		app:duration="1500"
+		app:icon="@drawable/ic_aexon" />
+</LinearLayout>

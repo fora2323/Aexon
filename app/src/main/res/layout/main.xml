@@ -1,46 +1,53 @@
-<androidx.appcompat.widget.LinearLayoutCompat
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/root_view"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:id="@+id/_main">
+	android:fitsSystemWindows="true"
+	android:background="@color/colorSurface"
+	android:orientation="vertical">
 	<com.aexon.viewx.AexonToolbarView
 		android:id="@+id/toolbar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:ax_title="@string/tag_title_home_toolbar"
 		app:ax_subtitle="@string/tag_sub_title_home_toolbar"
-		app:ax_titleColor="?attr/colorPrimary"
-		app:ax_subtitleColor="?attr/colorOnSurfaceVariant"
-		app:ax_actionIcon="@drawable/ic_power"
-		app:ax_actionIconTint="?attr/colorOnSurface" />
+		app:ax_tool_menu="@menu/toolbar_menu" />
 	<FrameLayout
-		android:id="@+id/container_view"
+		android:id="@+id/sub_container"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:orientation="vertical"
-		android:layout_weight="1">
-		<androidx.viewpager.widget.ViewPager
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+		<com.aexon.material.viewpager.AexonViewPager
 			android:id="@+id/viewpager1"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:clipToPadding="false" />
-		<com.aexon.viewx.AexonNavigationBar
-			android:id="@+id/ax_nav1"
+			android:orientation="horizontal"
+			android:layout_weight="1" />
+		<com.aexon.view.AexonFloatingButton
+			android:id="@+id/fab"
+			android:layout_width="55dp"
+			android:layout_height="55dp"
+			android:layout_marginRight="16dp"
+			android:layout_marginBottom="120dp"
+			android:background="@color/colorPrimaryDark"
+			android:layout_gravity="right|bottom"
+			app:ax_fab_icon="@drawable/ic_terminal"
+			app:ax_fab_elevation="@dimen/card_evalution_small"
+			app:ax_fab_radius="@dimen/card_radius_medium_max"
+			app:ax_fab_iconSize="@dimen/img_size_icon_large" />
+		<com.aexon.view.AexonNavigationBar
+			android:id="@+id/aexonnavigationbbar1"
 			android:layout_width="wrap_content"
 			android:layout_height="70dp"
 			android:layout_margin="24dp"
 			android:padding="6dp"
-			android:background="?colorSurfaceContainerHigh"
-			android:orientation="horizontal"
+			android:background="@color/colorSurfaceContainerHigh"
 			android:layout_gravity="center_horizontal|bottom"
 			app:ax_elevation="@dimen/card_evalution_small"
 			app:ax_menu="@menu/nav_menu_bottom"
-			app:ax_itemIconTint="@color/nav_icon_tint"
-			app:ax_radius="@dimen/card_radius_large_max"
-			app:ax_itemThumbColor="?colorPrimaryContainer"
-			app:ax_itemRippleColor="?colorOnPrimaryContainer" />
+			app:ax_radius="@dimen/card_radius_large_max" />
 	</FrameLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>

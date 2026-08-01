@@ -1,13 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="AexonNavigationBar">
-        <attr name="ax_radius" format="dimension" />
-        <attr name="ax_elevation" format="dimension" />
-        <attr name="ax_itemIconTint" format="color|reference" />
-        <attr name="ax_menu" format="reference" />
-        <attr name="ax_itemThumbColor" format="color|reference" />
-        <attr name="ax_itemRippleColor" format="color|reference" />
+    <!-- AexonLoading -->
+    <declare-styleable name="AexonLoading">
+        <attr name="track_color" format="color" />
+        <attr name="thumb_color" format="color" />
+        <attr name="icon" format="reference" />
+        <attr name="indeterminate" format="boolean" />
+        <attr name="duration" format="integer" />
     </declare-styleable>
+    <!-- AexonColorPickerView -->
+    <declare-styleable name="AexonColorPickerView">
+        <attr name="radius_view" format="dimension" />
+        <attr name="size_pointer" format="dimension" />
+        <attr name="elevation_view" format="dimension" />
+        <attr name="indikator_pointer" format="boolean" />
+        <attr name="auto_copy" format="boolean" />
+        <attr name="font_indikator" format="reference" />
+    </declare-styleable>
+    <!-- ColorSlider -->
+    <declare-styleable name="ColorSlider">
+        <attr name="radius_slider" format="dimension" />
+        <attr name="slider_stroke" format="dimension" />
+        <attr name="slider_stroke_color" format="color" />
+        <attr name="slider_elevation_track" format="dimension" />
+    </declare-styleable>
+    <!-- AexonTerminaView -->
+    <declare-styleable name="AexonTerminaView">
+        <attr name="terminalTextSize" format="dimension" />
+        <attr name="terminalTextColor" format="color" />
+        <attr name="terminalBgColor" format="color" />
+        <attr name="showInputBar" format="boolean" />
+        <attr name="maxScrollbackLines" format="integer" />
+        <attr name="terminalFontAsset" format="string" />
+        <attr name="terminalFontRes" format="reference" />
+    </declare-styleable>
+    <!-- AexonEditText -->
+    <declare-styleable name="AexonEditText">
+        <attr name="aexon_mode" format="enum">
+            <enum name="fault" value="0" />
+            <enum name="filled" value="1" />
+        </attr>
+    </declare-styleable>
+    <!-- AexonImageView -->
+    <declare-styleable name="AexonImageView">
+        <attr name="ax_img_radius" format="dimension" />
+        <attr name="ax_img_elevation" format="dimension" />
+        <attr name="ax_radiusTopLeft" format="dimension" />
+        <attr name="ax_radiusTopRight" format="dimension" />
+        <attr name="ax_radiusBottomLeft" format="dimension" />
+        <attr name="ax_radiusBottomRight" format="dimension" />
+        <attr name="ax_strokeWidth" format="dimension" />
+        <attr name="ax_strokeColor" format="color" />
+    </declare-styleable>
+    <!--AexonLoadingIndicator-->
+    <declare-styleable name="AexonLoadingIndicator">
+        <attr name="ax_mode" format="enum">
+            <enum name="indeterminate" value="0" />
+            <enum name="determinate" value="1" />
+       </attr>
+       <attr name="ax_progress" format="float" />
+       <attr name="ax_trackColor" format="color" />
+       <attr name="ax_indicatorColor" format="color" />
+       <attr name="ax_trackWidth" format="dimension" />
+       <attr name="ax_trackGap" format="dimension" />
+    </declare-styleable>
+    <!--AexonNavigationBar-->
+    <declare-styleable name="AexonNavigationBar">
+        <attr name="ax_menu" format="reference" />
+        <attr name="ax_elevation" format="dimension" />
+        <attr name="ax_radius" format="dimension" />
+        <attr name="ax_itemIconTint" format="color|reference" />
+        <attr name="ax_itemThumbColor" format="color" />
+        <attr name="ax_itemRippleColor" format="color" />
+    </declare-styleable>
+    <!--AexonToolbarView-->
     <declare-styleable name="AexonToolbarView">
         <attr name="ax_title" format="string" />
         <attr name="ax_subtitle" format="string" />
@@ -16,7 +82,32 @@
         <attr name="ax_titleColor" format="color" />
         <attr name="ax_subtitleColor" format="color" />
         <attr name="ax_actionIcon" format="reference" />
+        <attr name="ax_tool_menu" format="reference" />
         <attr name="ax_actionIconTint" format="color" />
         <attr name="ax_actionIconSize" format="dimension" />
+    </declare-styleable>
+    <!--AexonFloatingButton-->
+    <declare-styleable name="AexonFloatingButton">
+        <attr name="ax_fab_icon" format="reference" />
+        <attr name="ax_fab_iconTint" format="color" />
+        <attr name="ax_fab_iconPadding" format="dimension" />
+        <attr name="ax_fab_elevation" format="dimension" />
+        <attr name="ax_fab_radius" format="dimension" />
+        <attr name="ax_fab_rippleColor" format="color" />
+        <attr name="ax_fab_iconSize" format="dimension" />
+    </declare-styleable>
+    <!--AexonCompatButton-->
+    <declare-styleable name="AexonCompatButton">
+        <attr name="ax_btn_icon" format="reference" />
+        <attr name="ax_btn_text" format="string" />
+        <attr name="ax_btn_textSize" format="dimension" />
+        <attr name="ax_btn_textColor" format="color" />
+        <attr name="ax_btn_iconTint" format="color" />
+        <attr name="ax_btn_iconSize" format="dimension" />
+        <attr name="ax_btn_radius" format="dimension" />
+        <attr name="ax_btn_backgroundColor" format="color" />
+        <attr name="ax_btn_rippleColor" format="color" />
+        <attr name="ax_btn_strokeWidth" format="dimension" />
+        <attr name="ax_btn_strokeColor" format="color" />
     </declare-styleable>
 </resources>

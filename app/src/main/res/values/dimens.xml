@@ -14,19 +14,28 @@
     <!--ukuran img oval-->
     <dimen name="img_radius_oval">50dp</dimen>
     <!--ukuran card evalution-->
+    <dimen name="card_evalution">1dp</dimen>
     <dimen name="card_evalution_small">2dp</dimen>
     <dimen name="card_evalution_medium">4dp</dimen>
     <dimen name="card_evalution_large">6dp</dimen>
     <dimen name="card_evalution_large_max">8dp</dimen>
     <!--ukuran card stroke-->
-    <dimen name="card_stroke_small">0.8dp</dimen>
+    <dimen name="card_stroke_small" type="dimen" format="float">0.8dp</dimen>
     <dimen name="card_stroke_medium">1dp</dimen>
     <dimen name="card_stroke_large">2dp</dimen>
     <!--ukuran icon img-->
     <dimen name="img_size_icon">18dp</dimen>
+    <dimen name="img_size_icon_medium">24dp</dimen>
+    <dimen name="img_size_icon_large">30dp</dimen>
     <!--ukuran icon pedding-->
     <dimen name="img_size_pedding_small">2dp</dimen>
     <dimen name="img_size_pedding">10dp</dimen>
     <!--ukuran float alpha-->
     <item name="alpha_size" type="dimen" format="float">0.80</item>
+    <!--ukuran card evalution-->
+    <dimen name="text_size">10sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <!--ukuran stroke-->
+    <dimen name="stroke_size">1dp</dimen>
+    <dimen name="stroke_size_small">2dp</dimen>
 </resources>

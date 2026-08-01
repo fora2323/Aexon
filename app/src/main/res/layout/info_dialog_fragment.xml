@@ -1,0 +1,109 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<LinearLayout
+		android:id="@+id/container"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="12dp"
+		android:background="@color/colorSurfaceContainer"
+		android:gravity="center_horizontal"
+		android:orientation="vertical"
+		android:clipToPadding="false">
+		<LinearLayout
+			android:id="@+id/handle"
+			android:layout_width="40dp"
+			android:layout_height="4dp"
+			android:padding="8dp"
+			android:background="@color/colorOnPrimaryDark"
+			android:orientation="horizontal" />
+		<com.aexon.widget.AexonImageView
+			android:id="@+id/imageview1"
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:layout_marginTop="28dp"
+			android:layout_marginBottom="8dp"
+			android:padding="10dp"
+			android:background="#242424"
+			app:ax_img_radius="@dimen/card_radius_max"
+			android:src="@drawable/ic_fora2323"
+			android:elevation="@dimen/card_evalution_small" />
+		<TextView
+			android:id="@+id/textview1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingLeft="8dp"
+			android:paddingTop="8dp"
+			android:paddingRight="8dp"
+			android:paddingBottom="2dp"
+			android:gravity="center_horizontal|center_vertical"
+			android:text="fora2323(弗洛拉)"
+			android:textSize="17sp"
+			android:textStyle="bold"
+			android:textColor="@color/colorOnSurface" />
+		<TextView
+			android:id="@+id/textview2"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingLeft="8dp"
+			android:paddingTop="2dp"
+			android:paddingRight="8dp"
+			android:paddingBottom="8dp"
+			android:text="Developer | Maintenance"
+			android:textSize="12sp"
+			android:textColor="@color/colorPrimary" />
+		<TextView
+			android:id="@+id/textview3"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding="8dp"
+			android:text="Made with sketchware and termux"
+			android:textSize="12sp"
+			android:textColor="@color/colorOnSurfaceVariant" />
+		<LinearLayout
+			android:id="@+id/linear1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="4dp"
+			android:gravity="center_horizontal|center_vertical"
+			android:orientation="horizontal">
+			<com.aexon.widget.AexonCompatButton
+				android:id="@+id/btn_tl"
+				android:layout_width="wrap_content"
+				android:layout_height="35dp"
+				android:layout_margin="6dp"
+				app:ax_btn_icon="@drawable/ic_telegram"
+				app:ax_btn_text="@string/tag_btn_telegram"
+				app:ax_btn_radius="@dimen/card_radius_max"
+				app:ax_btn_textSize="@dimen/text_size_small"
+				app:ax_btn_iconSize="@dimen/img_size_icon_medium"
+				android:elevation="@dimen/card_evalution_small" />
+			<com.aexon.widget.AexonCompatButton
+				android:id="@+id/btn_wa"
+				android:layout_width="wrap_content"
+				android:layout_height="35dp"
+				android:layout_margin="6dp"
+				app:ax_btn_icon="@drawable/ic_whatsapp"
+				app:ax_btn_text="@string/tag_btn_whatsapp"
+				app:ax_btn_radius="@dimen/card_radius_max"
+				app:ax_btn_textSize="@dimen/text_size_small"
+				app:ax_btn_iconSize="@dimen/img_size_icon_medium"
+				android:elevation="@dimen/card_evalution_small" />
+		</LinearLayout>
+		<com.aexon.widget.AexonCompatButton
+			android:id="@+id/btn_donation"
+			android:layout_width="wrap_content"
+			android:layout_height="35dp"
+			android:layout_margin="6dp"
+			app:ax_btn_icon="@drawable/ic_coffee"
+			app:ax_btn_text="@string/tag_btn_donation"
+			app:ax_btn_radius="@dimen/card_radius_max"
+			app:ax_btn_textSize="@dimen/text_size_small"
+			app:ax_btn_iconSize="@dimen/img_size_icon_medium"
+			android:elevation="@dimen/card_evalution_small" />
+	</LinearLayout>
+</LinearLayout>
