@@ -30,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import androidx.core.*;
 import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import com.aexon.material.aexonswitch.AexonSwitch;
 import com.aexon.material.edittext.AexonEditText;

@@ -15,7 +15,6 @@ import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.core.content.ContextCompat;
 
 public class SketchwareUtil {
 	
@@ -39,12 +38,12 @@ public class SketchwareUtil {
 	
 	@ColorInt
 	public static int getColor(@NonNull Context context, @ColorRes int resId) {
-		return ContextCompat.getColor(context, resId);
+		return context.getColor(resId);
 	}
 	
 	@Nullable
 	public static Drawable getDrawable(@NonNull Context context, @DrawableRes int resId) {
-		return ContextCompat.getDrawable(context, resId);
+		return context.getDrawable(resId);
 	}
 	
 	public static float getDimension(@NonNull Context context, @DimenRes int resId) {

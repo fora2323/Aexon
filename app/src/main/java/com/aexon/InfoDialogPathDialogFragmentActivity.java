@@ -24,7 +24,6 @@ import android.webkit.*;
 import android.widget.*;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.core.*;
 import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import java.io.*;
 import java.text.*;

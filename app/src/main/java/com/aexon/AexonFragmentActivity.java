@@ -31,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import androidx.core.*;
 import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import com.aexon.material.aexonloading.AexonLoading;
 import com.aexon.material.edittext.AexonEditText;

@@ -24,8 +24,6 @@ import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
-import androidx.core.*;
-import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import com.aexon.material.viewpager.AexonViewPager;
 import com.aexon.view.AexonFloatingButton;
 import com.aexon.view.AexonNavigationBar;
@@ -43,7 +41,9 @@ import com.aexon.aexon.AexonWindowHelper;
 import com.aexon.aexon.animation.AexonAnimationCompat;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
-import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutInfo;
+
+
 
 public class MainActivity extends Activity {
 	
@@ -250,4 +250,4 @@ private final Aexon.OnBinderDeadListener mainBinderDead = () -> {
 		}
 	}
 	
-}
+}
