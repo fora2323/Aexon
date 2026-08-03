@@ -51,7 +51,3 @@ dependencies {
 
     implementation 'androidx.annotation:annotation:1.10.0'
 }
-
-tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs << "-Xlint:-deprecation"
-}
