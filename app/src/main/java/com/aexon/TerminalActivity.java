@@ -1,40 +1,31 @@
 package com.aexon;
 
-import android.content.Context;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.InputType;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.util.Base64;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Intent;
-import android.content.SharedPreferences;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
-import com.aexon.core.AexonColor;
 import com.aexon.core.AexonMath;
 import com.aexon.material.edittext.AexonEditText;
 import com.aexon.material.toasty.AexonToast;
@@ -42,6 +33,13 @@ import com.aexon.theme.AexonTheme;
 import com.aexon.aexon.AexonWindowHelper;
 import com.aexon.widget.AexonPopupMenu;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class TerminalActivity extends Activity {
 	
 	private boolean isKeyboardShowing = false;
@@ -49,6 +47,7 @@ public class TerminalActivity extends Activity {
 	private boolean isBusyboxMode = false;
 	private long currentPid = -1;
 	private AexonTheme currentTheme;
+	private String currentDir;
 	
 	private LinearLayout container;
 	private LinearLayout toolbar;
@@ -64,23 +63,22 @@ public class TerminalActivity extends Activity {
 	private AexonEditText input_exe;
 	private ImageView icon_exe;
 	
-	private Intent aexon_intent = new Intent();
-	
+	private final Intent aexon_intent = new Intent();
 	private final StringBuilder logBuffer = new StringBuilder();
-	private Handler mainHandler = new Handler(Looper.getMainLooper());
+	private final Handler mainHandler = new Handler(Looper.getMainLooper());
 	private Runnable flushRunnable;
 	private static final long FLUSH_INTERVAL = 200;
 	private boolean flushScheduled = false;
 	
 	@Override
-	protected void onCreate(Bundle _savedInstanceState) {
+	protected void onCreate(@Nullable Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
 		setContentView(R.layout.terminal);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
-	private void initialize(Bundle _savedInstanceState) {
+	private void initialize(@Nullable Bundle _savedInstanceState) {
 		container = findViewById(R.id.container);
 		toolbar = findViewById(R.id.toolbar);
 		sub_container = findViewById(R.id.sub_container);
@@ -110,12 +108,7 @@ public class TerminalActivity extends Activity {
 		input_exe.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
 		input_exe.setTypeface(Typeface.MONOSPACE);
 		
-		flushRunnable = new Runnable() {
-			@Override
-			public void run() {
-				flushLogBuffer();
-			}
-		};
+		flushRunnable = this::flushLogBuffer;
 		
 		icon_exe.setOnClickListener(v -> {
 			String cmd = input_exe.getText().toString().trim();
@@ -154,7 +147,7 @@ public class TerminalActivity extends Activity {
 					String deleteCmd = "rm -rf /storage/emulated/0/.Aexon/*";
 					Aexon.execStream(deleteCmd, new Aexon.OnProcessOutputListener() {
 						@Override public void onStart(long pid) {}
-						@Override public void onOutput(String chunk) {}
+						@Override public void onOutput(@NonNull String chunk) {}
 						@Override
 						public void onExit(int exitCode) {
 							mainHandler.post(() -> {
@@ -186,7 +179,7 @@ public class TerminalActivity extends Activity {
 		
 		String encoded;
 		try {
-			encoded = android.util.Base64.encodeToString(logContent.getBytes("UTF-8"), android.util.Base64.NO_WRAP);
+			encoded = Base64.encodeToString(logContent.getBytes(StandardCharsets.UTF_8), Base64.NO_WRAP);
 		} catch (Exception e) {
 			AexonToast.make(this).title("Save Log").message("Failed: " + e.getMessage()).show();
 			return;
@@ -195,12 +188,8 @@ public class TerminalActivity extends Activity {
 		String saveCmd = "mkdir -p /storage/emulated/0/.Aexon/ && echo '" + encoded + "' | base64 -d > '" + filePath + "'";
 		
 		Aexon.execStream(saveCmd, new Aexon.OnProcessOutputListener() {
-			@Override public void onStart(long pid) {
-                
-            }
-			@Override public void onOutput(String chunk) {
-                
-            }
+			@Override public void onStart(long pid) {}
+			@Override public void onOutput(@NonNull String chunk) {}
 			@Override
 			public void onExit(int exitCode) {
 				mainHandler.post(() -> {
@@ -219,6 +208,12 @@ public class TerminalActivity extends Activity {
 		
 		SharedPreferences prefs = getSharedPreferences("terminal_prefs", Context.MODE_PRIVATE);
 		isBusyboxMode = prefs.getBoolean("busybox_mode", false);
+		
+		String defaultDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+		currentDir = prefs.getString("current_dir", defaultDir);
+		if (!new File(currentDir).exists()) {
+			currentDir = defaultDir;
+		}
 		
 		icon_more.setColorFilter(currentTheme.getColorOnSurface(), PorterDuff.Mode.SRC_ATOP);
 		icon_exe.setColorFilter(currentTheme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
@@ -251,7 +246,7 @@ public class TerminalActivity extends Activity {
 				if (isKeyboardShowing && !isShowing) {
 					View focused = getCurrentFocus();
 					if (focused instanceof AexonEditText && focused.isFocused()) {
-						focused.postDelayed(() -> focused.clearFocus(), 100);
+						focused.postDelayed(focused::clearFocus, 100);
 					}
 				}
 				isKeyboardShowing = isShowing;
@@ -278,26 +273,32 @@ public class TerminalActivity extends Activity {
 		}
 	}
 	
-	private void runCommand(String cmd) {
+	private void runCommand(@NonNull String cmd) {
 		isRunning = true;
 		setInputEnabled(false);
 		
 		synchronized (logBuffer) {
 			logBuffer.setLength(0);
+			logBuffer.append("[command=").append(cmd).append("]\n");
 		}
+		
 		updateIconStates();
 		
-		String finalCmd = cmd;
+		String trimmedCmd = cmd.trim();
+		
 		String busyboxPath = getApplicationInfo().nativeLibraryDir + "/libbusybox.so";
-		String[] parts = cmd.trim().split("\\s+");
+		String executableCmd = cmd;
+		String[] parts = trimmedCmd.split("\\s+");
 		
 		if (isBusyboxMode && parts.length > 0 && !parts[0].isEmpty()) {
 			if (!parts[0].equals("busybox") && !parts[0].equals(busyboxPath)) {
-				finalCmd = busyboxPath + " " + cmd;
+				executableCmd = busyboxPath + " " + cmd;
 			}
 		}
 		
-		Aexon.execStream(finalCmd, new Aexon.OnProcessOutputListener() {
+		String shellScript = executableCmd;
+		
+		Aexon.execStream(shellScript, new Aexon.OnProcessOutputListener() {
 			@Override
 			public void onStart(long pid) {
 				currentPid = pid;
@@ -313,16 +314,15 @@ public class TerminalActivity extends Activity {
 			}
 			
 			@Override
-			public void onOutput(String chunk) {
-				if (chunk.contains("\0")) {
-					chunk = chunk.replace('\0', ' ');
+			public void onOutput(@NonNull String chunk) {
+				String sanitizedChunk = chunk.replace('\0', ' ');
+				if (!sanitizedChunk.endsWith("\n")) {
+					sanitizedChunk = sanitizedChunk + "\n";
 				}
-				if (!chunk.endsWith("\n")) {
-					chunk = chunk + "\n";
-				}
+				
 				int currentLength;
 				synchronized (logBuffer) {
-					logBuffer.append(chunk);
+					logBuffer.append(sanitizedChunk);
 					currentLength = logBuffer.length();
 				}
 				mainHandler.post(() -> {
@@ -341,10 +341,12 @@ public class TerminalActivity extends Activity {
 				mainHandler.removeCallbacks(flushRunnable);
 				mainHandler.post(() -> {
 					flushLogBuffer();
+					
 					synchronized (logBuffer) {
 						logBuffer.append("[shproc] Process[pid=").append(currentPid).append(", status=exit, exitcode=").append(exitCode).append("]\n");
 					}
 					flushLogBuffer();
+					
 					isRunning = false;
 					setInputEnabled(true);
 					currentPid = -1;
@@ -369,7 +371,7 @@ public class TerminalActivity extends Activity {
 		setIconState(icon_stop, isRunning, currentTheme.getColorPrimary());
 	}
 	
-	private void setIconState(ImageView icon, boolean active, int activeColor) {
+	private void setIconState(@NonNull ImageView icon, boolean active, int activeColor) {
 		int inactiveColor = currentTheme.getColorSurfaceVariant();
 		icon.setColorFilter(active ? activeColor : inactiveColor, PorterDuff.Mode.SRC_ATOP);
 		icon.setBackground(AexonDrawable.oval(this, currentTheme.getColorSurfaceContainer()));

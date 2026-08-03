@@ -1,50 +1,32 @@
 package com.aexon;
 
-import android.animation.*;
-import android.app.*;
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.*;
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.media.*;
-import android.net.*;
-import android.os.*;
-import android.text.*;
-import android.text.style.*;
-import android.util.*;
-import android.view.*;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
-import android.view.View.*;
-import android.view.animation.*;
-import android.webkit.*;
-import android.widget.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.aexon.material.aexonswitch.AexonSwitch;
-import com.aexon.material.button.AexonRadioButton;
-import java.io.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
-import org.json.*;
-import com.aexon.theme.AexonTheme;
-import com.aexon.theme.AexonThemeListener;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.aexon.aexon.ColorPickerDialog;
 import com.aexon.aexon.AexonWindowHelper;
 import com.aexon.aexon.animation.AexonAnimationCompat;
-
+import com.aexon.material.aexonswitch.AexonSwitch;
+import com.aexon.material.button.AexonRadioButton;
+import com.aexon.theme.AexonTheme;
+import com.aexon.theme.AexonThemeListener;
 
 public class AppearanceActivity extends Activity {
 	
-	private final AexonThemeListener themeListener = (seedColor, theme) -> {
-		_applyTheme(theme);
-	};
+	private final AexonThemeListener themeListener = (seedColor, theme) -> _applyTheme(theme);
 	
 	private LinearLayout toolbar;
 	private LinearLayout linear1;
@@ -77,18 +59,24 @@ public class AppearanceActivity extends Activity {
 	private TextView textview5;
 	private TextView textview6;
 	private LinearLayout palet_color;
+	private LinearLayout amoled_container;
+	private ImageView imageview6;
+	private LinearLayout linear20;
+	private AexonSwitch switch3;
+	private TextView textview11;
+	private TextView textview12;
 	
 	private SharedPreferences sp;
 	
 	@Override
-	protected void onCreate(Bundle _savedInstanceState) {
+	protected void onCreate(@Nullable Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
 		setContentView(R.layout.appearance);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
-	private void initialize(Bundle _savedInstanceState) {
+	private void initialize(@Nullable Bundle _savedInstanceState) {
 		AexonTheme.getInstance().addListener(themeListener);
 		toolbar = findViewById(R.id.toolbar);
 		linear1 = findViewById(R.id.linear1);
@@ -121,10 +109,15 @@ public class AppearanceActivity extends Activity {
 		textview5 = findViewById(R.id.textview5);
 		textview6 = findViewById(R.id.textview6);
 		palet_color = findViewById(R.id.palet_color);
+		amoled_container = findViewById(R.id.amoled_container);
+		imageview6 = findViewById(R.id.imageview6);
+		linear20 = findViewById(R.id.linear20);
+		switch3 = findViewById(R.id.switch3);
+		textview11 = findViewById(R.id.textview11);
+		textview12 = findViewById(R.id.textview12);
 		sp = getSharedPreferences("-sharedAexon", Activity.MODE_PRIVATE);
 		
 		imageview1.setOnClickListener(_v -> onBackPressed());
-		
 		palette_container.setOnClickListener(_v -> ColorPickerDialog.show(AppearanceActivity.this, null));
 	}
 	
@@ -154,11 +147,14 @@ public class AppearanceActivity extends Activity {
 			}
 		});
 		
+		switch3.setChecked(AexonTheme.getInstance().isAmoledModeEnabled());
+		switch3.setOnCheckedChangeListener((buttonView, isChecked) -> AexonTheme.getInstance().setAmoledMode(isChecked));
+		textview12.setText("Latar hitam murni dengan aksen warna dinamis.");
+		
 		_applyTheme(AexonTheme.getInstance());
 		
 		boolean newAndroid = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
 		
-		//check theme android 10+
 		if (!newAndroid) {
 			switch2.setChecked(false);
 			switch2.setEnabled(false);
@@ -217,7 +213,6 @@ public class AppearanceActivity extends Activity {
 			_updateRadioButtons(AexonTheme.MODE_LIGHT);
 		});
 		
-		
 		switch2.setOnCheckedChangeListener((_buttonView, _isChecked) -> {
 			sp.edit().putBoolean("ax_theme", _isChecked).commit();
 			AexonAnimationCompat.animateVisibility(linear1);
@@ -238,7 +233,6 @@ public class AppearanceActivity extends Activity {
 		});
 	}
 	
-	
 	@Override
 	public void onBackPressed() {
 		super.finish();
@@ -250,15 +244,14 @@ public class AppearanceActivity extends Activity {
 		super.onDestroy();
 		AexonTheme.getInstance().removeListener(themeListener);
 	}
-	public void _applyTheme(final AexonTheme _theme) {
+	
+	public void _applyTheme(@NonNull final AexonTheme _theme) {
 		AexonWindowHelper.setWindowStyle(getWindow(), _theme.getColorSurface());
-		//_applyDynamicState(_theme);
 		
 		float radius = SketchwareUtil.getDimension(AppearanceActivity.this, R.dimen.card_radius_medium);
 		float radius_max = SketchwareUtil.getDimension(AppearanceActivity.this, R.dimen.card_radius_max);
 		float stroke = SketchwareUtil.getDimension(AppearanceActivity.this, R.dimen.card_stroke_small);
 		
-		//card seed palette
 		palet_color.setBackground(new AexonDrawable.Builder(_theme.getSeedColor()).cornerRadius(radius_max).stroke(stroke, _theme.getColorOutlineVariant()).build().build(AppearanceActivity.this));
 		
 		toolbar.setBackgroundColor(_theme.getColorSurface());
@@ -272,6 +265,8 @@ public class AppearanceActivity extends Activity {
 		imageview3.setColorFilter(_theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
 		imageview4.setColorFilter(_theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
 		imageview5.setColorFilter(_theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
+		imageview6.setColorFilter(_theme.getColorPrimary(), PorterDuff.Mode.SRC_ATOP);
+		
 		textview1.setTextColor(_theme.getColorOnSurface());
 		textview4.setTextColor(_theme.getColorOnSurface());
 		textview5.setTextColor(_theme.getColorOnSurfaceVariant());
@@ -279,27 +274,35 @@ public class AppearanceActivity extends Activity {
 		textview7.setTextColor(_theme.getColorOnSurface());
 		textview8.setTextColor(_theme.getColorOnSurfaceVariant());
 		textview9.setTextColor(_theme.getColorOnSurface());
+		textview11.setTextColor(_theme.getColorOnSurface());
 		textview10.setTextColor(_theme.getColorOnSurfaceVariant());
+		textview12.setTextColor(_theme.getColorOnSurfaceVariant());
 		follow_systm.setTextColor(_theme.getColorOnSurfaceVariant());
 		
 		dark_mode.setTextColor(_theme.getColorOnSurfaceVariant());
 		light_mode.setTextColor(_theme.getColorOnSurfaceVariant());
 		
-		
-		//container dynamic & theme & palette
 		dynamic_container.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(radius).ripple(_theme.getColorOnSurface()).build().build(AppearanceActivity.this));
 		dynamic_container.setClickable(true);
 		palette_container.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(radius).ripple(_theme.getColorOnSurface()).build().build(AppearanceActivity.this));
 		palette_container.setClickable(true);
 		theme_container.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(radius).ripple(_theme.getColorOnSurface()).build().build(AppearanceActivity.this));
 		theme_container.setClickable(true);
+		amoled_container.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(radius).ripple(_theme.getColorOnSurface()).build().build(AppearanceActivity.this));
+		amoled_container.setClickable(true);
 		
-		//pindah disini rey
+		if (_theme.isDarkMode()) {
+			amoled_container.setVisibility(View.VISIBLE);
+		} else {
+			amoled_container.setVisibility(View.GONE);
+		}
+		
+		switch3.setChecked(_theme.isAmoledModeEnabled());
+		
 		_applyDynamicState(_theme);
 	}
 	
-	
-	public void _applyDynamicState(final AexonTheme _theme) {
+	public void _applyDynamicState(@NonNull final AexonTheme _theme) {
 		boolean dynamicActive = _theme.isDynamicColorEnabled();
 		float radius = SketchwareUtil.getDimension(AppearanceActivity.this, R.dimen.card_radius_medium);
 		if (dynamicActive) {
@@ -313,11 +316,9 @@ public class AppearanceActivity extends Activity {
 		}
 	}
 	
-	
 	public void _updateRadioButtons(final double _mode) {
 		follow_systm.setChecked(_mode == AexonTheme.MODE_FOLLOW_SYSTEM);
 		dark_mode.setChecked(_mode == AexonTheme.MODE_DARK);
 		light_mode.setChecked(_mode == AexonTheme.MODE_LIGHT);
 	}
-	
 }

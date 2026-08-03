@@ -31,8 +31,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import com.aexon.material.aexonloading.AexonLoading;
 import com.aexon.material.edittext.AexonEditText;
+import com.aexon.view.AexonSwipeRefreshLayout;
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -44,8 +46,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import com.aexon.widget.AexonPopupMenu;
 import com.aexon.theme.AexonTheme;
-import com.aexon.theme.AexonThemeListener;
-
+import com.aexon.theme.AexonThemeListener;
 
 public class AexonFragmentActivity extends Fragment {
 	
@@ -60,8 +61,9 @@ public class AexonFragmentActivity extends Fragment {
 	private ArrayList<HashMap<String, Object>> list_filtered = new ArrayList<>();
 	
 	private FrameLayout linear1;
-	private LinearLayout linear2;
+	private AexonSwipeRefreshLayout swipe_refresh;
 	private LinearLayout search_view;
+	private LinearLayout linear2;
 	private ListView listview1;
 	private LinearLayout container3;
 	private AexonLoading loadingaexon1;
@@ -82,8 +84,9 @@ public class AexonFragmentActivity extends Fragment {
 	
 	private void initialize(Bundle _savedInstanceState, View _view) {
 		linear1 = _view.findViewById(R.id.linear1);
-		linear2 = _view.findViewById(R.id.linear2);
+		swipe_refresh = _view.findViewById(R.id.swipe_refresh);
 		search_view = _view.findViewById(R.id.search_view);
+		linear2 = _view.findViewById(R.id.linear2);
 		listview1 = _view.findViewById(R.id.listview1);
 		container3 = _view.findViewById(R.id.container3);
 		loadingaexon1 = _view.findViewById(R.id.loadingaexon1);
@@ -157,6 +160,13 @@ public class AexonFragmentActivity extends Fragment {
 	private void initializeLogic() {
 		double lastMode = (double) sp.getInt("mode", 1);
 		_loadApp(lastMode);
+		swipe_refresh.setTargetView(listview1);
+		swipe_refresh.setIndicatorOffsetDp(75);
+		swipe_refresh.setOnRefreshListener(() -> {
+			_loadApp(currentMode);
+		});
+		
+		listview1.setSelector(new ColorDrawable(Color.TRANSPARENT));
 	}
 	
 	
@@ -176,11 +186,15 @@ public class AexonFragmentActivity extends Fragment {
 	public void onResume() {
 		super.onResume();
 		_applyTheme(AexonTheme.getInstance());
+		//_loadApp(currentMode);
 	}
 	public void _loadApp(final double _app) {
 		int mode = (int) _app;
 		
-		if (mode == currentMode && !isLoading) return;
+		if (isLoading) {
+			swipe_refresh.setRefreshing(false);
+			return;
+		}
 		currentMode = mode;
 		
 		if (search_bar != null) search_bar.setText("");
@@ -198,7 +212,12 @@ public class AexonFragmentActivity extends Fragment {
 		new Thread(() -> {
 			final String gamesRaw = AexonCore.getAppList(getContext(), mode);
 			
-			if (!thisRunActive[0] || !isLoading) return;
+			if (!thisRunActive[0] || !isLoading) {
+				if (getActivity() != null) {
+					getActivity().runOnUiThread(() -> swipe_refresh.setRefreshing(false));
+				}
+				return;
+			}
 			
 			if (gamesRaw == null || gamesRaw.isEmpty()) {
 				if (getActivity() != null)
@@ -206,6 +225,7 @@ public class AexonFragmentActivity extends Fragment {
 					container3.setVisibility(View.GONE);
 					loadingaexon1.setVisibility(View.GONE);
 					isLoading = false;
+					swipe_refresh.setRefreshing(false);
 				});
 				return;
 			}
@@ -216,21 +236,27 @@ public class AexonFragmentActivity extends Fragment {
 			int total = packageArray.length;
 			
 			for (int i = 0; i < total; i++) {
-				if (!thisRunActive[0] || !isLoading) return;
+				if (!thisRunActive[0] || !isLoading) {
+					if (getActivity() != null) {
+						getActivity().runOnUiThread(() -> swipe_refresh.setRefreshing(false));
+					}
+					return;
+				}
 				
 				String pkg = packageArray[i].trim();
 				if (!pkg.isEmpty()) {
 					HashMap<String, Object> item = new HashMap<>();
 					item.put("package", pkg);
 					try {
+						// Jika APK di-uninstall, getApplicationInfo akan melempar Exception
 						ApplicationInfo info = pm.getApplicationInfo(pkg, 0);
 						item.put("app_name", pm.getApplicationLabel(info).toString());
 						item.put("app_icon", pm.getApplicationIcon(info));
+						tempList.add(item); // Hanya ditambahkan jika app terinstall
 					} catch (Exception e) {
-						item.put("app_name", pkg);
-						item.put("app_icon", pm.getDefaultActivityIcon());
+						// App tidak ditemukan / ter-uninstall -> langsung dilewati (continue)
+						continue;
 					}
-					tempList.add(item);
 				}
 				
 				final int progress = i + 1;
@@ -240,7 +266,12 @@ public class AexonFragmentActivity extends Fragment {
 				}
 			}
 			
-			if (!thisRunActive[0] || !isLoading) return;
+			if (!thisRunActive[0] || !isLoading) {
+				if (getActivity() != null) {
+					getActivity().runOnUiThread(() -> swipe_refresh.setRefreshing(false));
+				}
+				return;
+			}
 			
 			if (getActivity() != null) {
 				getActivity().runOnUiThread(() -> {
@@ -257,6 +288,7 @@ public class AexonFragmentActivity extends Fragment {
 					listview1.setVisibility(View.VISIBLE);
 					loadingaexon1.setVisibility(View.GONE);
 					isLoading = false;
+					swipe_refresh.setRefreshing(false);
 				});
 			}
 		}).start();
@@ -304,6 +336,10 @@ public class AexonFragmentActivity extends Fragment {
 	
 	public void _applyTheme(final AexonTheme _theme) {
 		currentTheme = _theme;
+		
+		icon_more.setColorFilter(_theme.getColorOnSurface(), PorterDuff.Mode.SRC_ATOP);
+		icon_more.setBackground(AexonDrawable.oval(getContext(), _theme.getColorSurfaceContainer()));
+		icon_more.setClickable(true);
 		_setShadowEdge(_theme.getColorSurface());
 		search_view.setBackground(new AexonDrawable.Builder(_theme.getColorSurfaceContainer()).cornerRadius(SketchwareUtil.getDimension(getContext(), R.dimen.card_radius_medium)).stroke(SketchwareUtil.getDimension(getContext(), R.dimen.card_stroke_small), _theme.getColorOutlineVariant()).ripple(_theme.getColorOnSurface()).build().build(getContext()));
 		loadingaexon1.setTrackColor(_theme.getColorSurfaceContainer());
@@ -399,4 +435,4 @@ public class AexonFragmentActivity extends Fragment {
 			return _view;
 		}
 	}
-}
+}

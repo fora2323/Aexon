@@ -1,6 +1,5 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
 }
 
 android {
@@ -12,8 +11,8 @@ android {
         applicationId "com.aexon"
         minSdk 26
         targetSdk 36
-        versionCode 1018
-        versionName "1.4"
+        versionCode 1019
+        versionName "1.5"
     }
 
     signingConfigs {
@@ -44,25 +43,13 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
     implementation 'dev.rikka.shizuku:api:13.0.0'
     implementation 'dev.rikka.shizuku:provider:13.0.0'
 
     implementation 'androidx.annotation:annotation:1.10.0'
-}
-
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-    kotlinOptions {
-        freeCompilerArgs += ["-nowarn"]
-    }
 }
 
 tasks.withType(JavaCompile).configureEach {

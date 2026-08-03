@@ -24,6 +24,7 @@ import android.webkit.*;
 import android.widget.*;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -32,8 +33,7 @@ import org.json.*;
 import com.aexon.theme.AexonTheme;
 import com.aexon.theme.AexonThemeListener;
 import com.aexon.aexon.AexonClipboardHelper;
-import com.aexon.core.AexonColorUtils;
-
+import com.aexon.core.AexonColorUtils;
 
 public class InfoDialogPathDialogFragmentActivity extends AexonBottomSheetFragment {
 	
@@ -149,4 +149,4 @@ public void onViewCreated(View view, Bundle savedInstanceState) {
 		container.setBackground(new GradientDrawable(){{setCornerRadii(new float[]{SketchwareUtil.getDip(getContext().getApplicationContext(), (int)(18)), SketchwareUtil.getDip(getContext().getApplicationContext(), (int)(18)), SketchwareUtil.getDip(getContext().getApplicationContext(), (int)(18)), SketchwareUtil.getDip(getContext().getApplicationContext(), (int)(18)), 0, 0, 0, 0});setColor(theme.getColorSurfaceContainer());}});
 	}
 	
-}
+}

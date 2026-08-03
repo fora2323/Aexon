@@ -1,77 +1,61 @@
 package com.aexon;
 
-import android.animation.*;
-import android.app.*;
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.*;
 import android.content.Intent;
-import android.content.res.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.media.*;
-import android.net.*;
-import android.net.Uri;
-import android.os.*;
-import android.text.*;
-import android.text.style.*;
-import android.util.*;
-import android.view.*;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Icon;
+import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
-import android.view.View.*;
-import android.view.animation.*;
-import android.webkit.*;
-import android.widget.*;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
+import com.aexon.aexon.AexonWindowHelper;
+import com.aexon.aexon.DialogCustom;
 import com.aexon.material.viewpager.AexonViewPager;
+import com.aexon.theme.AexonTheme;
+import com.aexon.theme.AexonThemeListener;
 import com.aexon.view.AexonFloatingButton;
 import com.aexon.view.AexonNavigationBar;
 import com.aexon.viewx.AexonToolbarView;
-import java.io.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
-import org.json.*;
-import com.aexon.material.toasty.AexonToast;
-import com.aexon.theme.AexonTheme;
-import com.aexon.theme.AexonThemeListener;
-import com.aexon.aexon.DialogCustom;
-import com.aexon.aexon.AexonWindowHelper;
-import com.aexon.aexon.animation.AexonAnimationCompat;
-import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Icon;
-import android.content.pm.ShortcutInfo;
 
+import java.util.Arrays;
 
-
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class MainActivity extends Activity {
 	
 	private final AexonThemeListener themeListener = (seedColor, theme) -> {
 		_applyTheme(theme);
 	};
-	private LinearLayout root_view;
 	
+	private LinearLayout root_view;
 	private AexonToolbarView toolbar;
 	private FrameLayout sub_container;
 	private AexonViewPager viewpager1;
 	private AexonFloatingButton fab;
 	private AexonNavigationBar aexonnavigationbbar1;
 	
-	private Intent ax_intent = new Intent();
+	private final Intent ax_intent = new Intent();
 	
 	@Override
-	protected void onCreate(Bundle _savedInstanceState) {
+	protected void onCreate(@Nullable Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
 		setContentView(R.layout.main);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
-	private void initialize(Bundle _savedInstanceState) {
+	private void initialize(@Nullable Bundle _savedInstanceState) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 			getWindow().setDecorFitsSystemWindows(true);
 		}
+		
 		root_view = findViewById(R.id.root_view);
 		toolbar = findViewById(R.id.toolbar);
 		sub_container = findViewById(R.id.sub_container);
@@ -95,16 +79,14 @@ public class MainActivity extends Activity {
 					toolbar.setItemVisible(R.id.action_power, true);
 					toolbar.setItemVisible(R.id.action_info, false);
 					_setStatus();
-				}
-				if (_position == 1) {
+				} else if (_position == 1) {
 					aexonnavigationbbar1.setChecked(1);
 					toolbar.setTitle(SketchwareUtil.getString(MainActivity.this, R.string.tag_title_app_toolbar));
 					toolbar.setSubtitle(SketchwareUtil.getString(MainActivity.this, R.string.tag_sub_title_app_toolbar));
 					toolbar.setItemVisible(R.id.action_power, false);
 					toolbar.setItemVisible(R.id.action_info, false);
 					fab.setVisibility(View.GONE);
-				}
-				if (_position == 2) {
+				} else if (_position == 2) {
 					aexonnavigationbbar1.setChecked(2);
 					toolbar.setTitle(SketchwareUtil.getString(MainActivity.this, R.string.tag_title_settings_toolbar));
 					toolbar.setSubtitle(SketchwareUtil.getString(MainActivity.this, R.string.tag_sub_title_settings_toolbar));
@@ -127,17 +109,18 @@ public class MainActivity extends Activity {
 		});
 	}
 	
-private final Aexon.OnBinderReceivedListener mainBinderReceived = () -> {
-	runOnUiThread(() -> {
-		if (viewpager1.getCurrentItem() == 0) _setStatus();
-	});
-};
-
-private final Aexon.OnBinderDeadListener mainBinderDead = () -> {
-	runOnUiThread(() -> {
-		if (viewpager1.getCurrentItem() == 0) _setStatus();
-	});
-};
+	private final Aexon.OnBinderReceivedListener mainBinderReceived = () -> {
+		runOnUiThread(() -> {
+			if (viewpager1.getCurrentItem() == 0) _setStatus();
+		});
+	};
+	
+	private final Aexon.OnBinderDeadListener mainBinderDead = () -> {
+		runOnUiThread(() -> {
+			if (viewpager1.getCurrentItem() == 0) _setStatus();
+		});
+	};
+	
 	private void initializeLogic() {
 		FragmentAdapter fragment = new FragmentAdapter(getApplicationContext(), getFragmentManager());
 		fragment.setTabCount(3);
@@ -145,12 +128,7 @@ private final Aexon.OnBinderDeadListener mainBinderDead = () -> {
 		viewpager1.setCurrentItem(0);
 		viewpager1.setOffscreenPageLimit(3);
 		
-		aexonnavigationbbar1.setOnItemSelectedListener(new AexonNavigationBar.OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(int index, int itemId) {
-				viewpager1.setCurrentItem(index, true);
-			}
-		});
+		aexonnavigationbbar1.setOnItemSelectedListener((index, itemId) -> viewpager1.setCurrentItem(index, true));
 		
 		toolbar.setItemVisible(R.id.action_power, true);
 		toolbar.setItemVisible(R.id.action_info, false);
@@ -163,6 +141,7 @@ private final Aexon.OnBinderDeadListener mainBinderDead = () -> {
 					public void onSwipeUp() {
 						Aexon.stopDaemonPermanently();
 					}
+					
 					@Override
 					public void onSwipeDown() {
 						Aexon.stopDaemon();
@@ -174,24 +153,28 @@ private final Aexon.OnBinderDeadListener mainBinderDead = () -> {
 				bottomSheet.show(getFragmentManager(), "InfoDialog");
 			}
 		});
+		
 		_applyTheme(AexonTheme.getInstance());
-		fab.setElevation((float)SketchwareUtil.getDip(getApplicationContext(), (int)(4)));
+		fab.setElevation(SketchwareUtil.getDip(getApplicationContext(), 4));
+		
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
 			ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
 			if (shortcutManager != null) {
 				Intent shortcutIntent = new Intent(this, TerminalActivity.class);
 				shortcutIntent.setAction(Intent.ACTION_VIEW);
-				ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_terminal").setShortLabel("Open Terminal").setIcon(Icon.createWithResource(this, R.drawable.ic_terminal_2)).setIntent(shortcutIntent).build();
+				ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_terminal")
+						.setShortLabel("Open Terminal")
+						.setIcon(Icon.createWithResource(this, R.drawable.ic_terminal_2))
+						.setIntent(shortcutIntent)
+						.build();
 				shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
 			}
 		}
 	}
 	
-	
 	@Override
 	public void onPause() {
 		super.onPause();
-		
 	}
 	
 	@Override
@@ -215,30 +198,33 @@ private final Aexon.OnBinderDeadListener mainBinderDead = () -> {
 		Aexon.removeBinderReceivedListener(mainBinderReceived);
 		Aexon.removeBinderDeadListener(mainBinderDead);
 	}
-	public void _applyTheme(final AexonTheme _theme) {
-		//nav
+	
+	public void _applyTheme(@NonNull final AexonTheme _theme) {
+		// nav
 		aexonnavigationbbar1.setBackgroundColor(_theme.getColorSurfaceContainerHigh());
-		ColorStateList iconTint = new ColorStateList(new int[][]{new int[]{ android.R.attr.state_checked }, new int[]{}}, new int[]{_theme.getColorPrimary(), _theme.getColorOnSurfaceVariant()});
+		ColorStateList iconTint = new ColorStateList(
+				new int[][]{new int[]{android.R.attr.state_checked}, new int[]{}}, 
+				new int[]{_theme.getColorPrimary(), _theme.getColorOnSurfaceVariant()}
+		);
 		aexonnavigationbbar1.setItemIconTint(iconTint);
 		aexonnavigationbbar1.setThumbColor(_theme.getColorPrimary());
 		aexonnavigationbbar1.setRippleColor(_theme.getColorOnPrimaryDark());
 		
-		//fab
+		// fab
 		fab.setBackgroundColor(_theme.getColorPrimary());
 		fab.setRippleColor(_theme.getColorOnPrimaryDark());
 		fab.setIconTint(_theme.getColorOnPrimary());
 		
-		//toolbar
+		// toolbar
 		toolbar.setTitleColor(_theme.getColorPrimary());
 		toolbar.setSubtitleColor(_theme.getColorOnSurfaceVariant());
 		toolbar.setActionRippleColor(_theme.getColorOnSurface());
 		toolbar.setActionIconTint(_theme.getColorOnSurface());
 		
-		//
+		// root
 		root_view.setBackgroundColor(_theme.getColorSurface());
 		AexonWindowHelper.setWindowStyle(getWindow(), _theme.getColorSurface());
 	}
-	
 	
 	public void _setStatus() {
 		if (Aexon.isBinder()) {
@@ -249,5 +235,4 @@ private final Aexon.OnBinderDeadListener mainBinderDead = () -> {
 			fab.setVisibility(View.GONE);
 		}
 	}
-	
 }

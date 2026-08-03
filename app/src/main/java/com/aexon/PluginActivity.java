@@ -21,6 +21,7 @@ import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
+import androidx.lifecycle.lifecycle.runtime.anchor.*;
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -43,4 +44,4 @@ public class PluginActivity extends Activity {
 	private void initializeLogic() {
 	}
 	
-}
+}
