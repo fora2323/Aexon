@@ -1,16 +1,41 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
+
 package com.aexon.material.bottomsheet;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.content.Context;
 
-import com.aexon.annotation.NonNull;
-import com.aexon.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AexonBottomSheetFragment extends DialogFragment {
 	
 	private static final String KEY_STATE = "aexon_bottom_sheet_state";
@@ -80,11 +105,11 @@ public class AexonBottomSheetFragment extends DialogFragment {
 	}
 	
 	@Override
-	public int show(android.app.FragmentTransaction transaction, @Nullable String tag) {
+	public int show(FragmentTransaction transaction, @Nullable String tag) {
 		return super.show(transaction, tag);
 	}
 	
-	public void show(@NonNull android.app.FragmentManager manager, @Nullable String tag) {
+	public void show(@NonNull FragmentManager manager, @Nullable String tag) {
 		super.show(manager, tag);
 	}
 }

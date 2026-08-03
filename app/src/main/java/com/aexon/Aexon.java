@@ -1,3 +1,22 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
 package com.aexon;
 
 import android.content.Context;
@@ -5,16 +24,20 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.StrictMode;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.aexon.annotation.NonNull;
-import com.aexon.annotation.Nullable;
-
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class Aexon {
 	
 	private static final String HOST = "127.0.0.1";
@@ -25,9 +48,9 @@ public class Aexon {
 	private static final byte[] STARTER_PID_FILE_ENC = {0x75, 0x3E, 0x3B, 0x2E, 0x3B, 0x75, 0x36, 0x35, 0x39, 0x3B, 0x36, 0x75, 0x2E, 0x37, 0x2A, 0x75, 0x74, 0x3B, 0x22, 0x05, 0x29, 0x2E, 0x3B, 0x28, 0x2E, 0x3F, 0x28};
 	private static final Handler mainHandler = new Handler(Looper.getMainLooper());
 	
-	private @NonNull String[] command;
-	private @Nullable String[] env;
-	private @Nullable String dir;
+	private final @NonNull String[] command;
+	private final @Nullable String[] env;
+	private final @Nullable String dir;
 	
 	private static final List<OnBinderReceivedListener> binderReceivedListeners = new CopyOnWriteArrayList<>();
 	private static final List<OnBinderDeadListener> binderDeadListeners = new CopyOnWriteArrayList<>();
@@ -59,11 +82,7 @@ public class Aexon {
 		for (int i = 0; i < enc.length; i++) {
 			out[i] = (byte) (enc[i] ^ AX_KEY);
 		}
-		try {
-			return new String(out, "UTF-8");
-		} catch (Exception e) {
-			return "";
-		}
+		return new String(out, StandardCharsets.UTF_8);
 	}
 	
 	private static void allowNetwork() {
@@ -77,8 +96,12 @@ public class Aexon {
 	public void exec() {
 		new Thread(() -> {
 			StringBuilder cmd = new StringBuilder();
-			if (env != null) for (String e : env) cmd.append(e).append(" ");
-			if (dir != null) cmd.append("cd ").append(dir).append(" && ");
+			if (env != null) {
+				for (String e : env) cmd.append(e).append(" ");
+			}
+			if (dir != null) {
+				cmd.append("cd ").append(dir).append(" && ");
+			}
 			for (int i = 0; i < command.length; i++) {
 				cmd.append(command[i]);
 				if (i < command.length - 1) cmd.append(" ");
@@ -89,8 +112,12 @@ public class Aexon {
 	
 	public @NonNull AexonProcess execResult() {
 		StringBuilder cmd = new StringBuilder();
-		if (env != null) for (String e : env) cmd.append(e).append(" ");
-		if (dir != null) cmd.append("cd ").append(dir).append(" && ");
+		if (env != null) {
+			for (String e : env) cmd.append(e).append(" ");
+		}
+		if (dir != null) {
+			cmd.append("cd ").append(dir).append(" && ");
+		}
 		for (int i = 0; i < command.length; i++) {
 			cmd.append(command[i]);
 			if (i < command.length - 1) cmd.append(" ");
@@ -100,21 +127,19 @@ public class Aexon {
 	
 	private static @NonNull String sendCommand(@NonNull String command) {
 		allowNetwork();
-		try {
-			Socket socket = new Socket(HOST, PORT);
+		try (Socket socket = new Socket(HOST, PORT)) {
 			socket.setSoTimeout(5000);
 			OutputStream out = socket.getOutputStream();
-			out.write((axDecode(AUTH_TOKEN_ENC) + "\n").getBytes("UTF-8"));
+			out.write((axDecode(AUTH_TOKEN_ENC) + "\n").getBytes(StandardCharsets.UTF_8));
 			out.flush();
-			out.write((command + "\n").getBytes("UTF-8"));
+			out.write((command + "\n").getBytes(StandardCharsets.UTF_8));
 			out.flush();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 			StringBuilder result = new StringBuilder();
 			String line;
 			while ((line = reader.readLine()) != null) {
 				result.append(line).append("\n");
 			}
-			socket.close();
 			return result.toString().trim();
 		} catch (Exception e) {
 			return "Error: " + e.getMessage();
@@ -123,15 +148,13 @@ public class Aexon {
 	
 	public static boolean isBinder() {
 		allowNetwork();
-		try {
-			Socket socket = new Socket(HOST, PORT);
+		try (Socket socket = new Socket(HOST, PORT)) {
 			socket.setSoTimeout(500);
 			OutputStream out = socket.getOutputStream();
-			out.write((axDecode(AUTH_TOKEN_ENC) + "\n").getBytes("UTF-8"));
+			out.write((axDecode(AUTH_TOKEN_ENC) + "\n").getBytes(StandardCharsets.UTF_8));
 			out.flush();
-			out.write(("echo ok\n").getBytes("UTF-8"));
+			out.write(("echo ok\n").getBytes(StandardCharsets.UTF_8));
 			out.flush();
-			socket.close();
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -149,16 +172,15 @@ public class Aexon {
 	public static void execStream(@NonNull String command, @NonNull OnProcessOutputListener callback) {
 		new Thread(() -> {
 			allowNetwork();
-			try {
-				Socket socket = new Socket(HOST, PORT);
+			try (Socket socket = new Socket(HOST, PORT)) {
 				socket.setSoTimeout(0);
 				OutputStream out = socket.getOutputStream();
-				out.write((axDecode(AUTH_TOKEN_ENC) + "\n").getBytes("UTF-8"));
+				out.write((axDecode(AUTH_TOKEN_ENC) + "\n").getBytes(StandardCharsets.UTF_8));
 				out.flush();
-				out.write(("@@EXEC:" + command + "\n").getBytes("UTF-8"));
+				out.write(("@@EXEC:" + command + "\n").getBytes(StandardCharsets.UTF_8));
 				out.flush();
 				
-				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 				
 				String pidLine = reader.readLine();
 				long pid = -1;
@@ -166,7 +188,6 @@ public class Aexon {
 					try {
 						pid = Long.parseLong(pidLine.substring(6).trim());
 					} catch (Exception ignored) {
-						
 					}
 				}
 				final long finalPid = pid;
@@ -179,14 +200,12 @@ public class Aexon {
 						try {
 							exitCode = Integer.parseInt(line.substring(7).trim());
 						} catch (Exception ignored) {
-							
 						}
 						break;
 					}
 					final String outLine = line;
 					mainHandler.post(() -> callback.onOutput(outLine));
 				}
-				socket.close();
 				final int finalExit = exitCode;
 				mainHandler.post(() -> callback.onExit(finalExit));
 			} catch (Exception e) {
@@ -229,7 +248,6 @@ public class Aexon {
 				try {
 					Thread.sleep(500);
 				} catch (Exception ignored) {
-					
 				}
 			}
 		}).start();
@@ -254,10 +272,9 @@ public class Aexon {
 		new Thread(() -> {
 			boolean wasRunning = isBinder();
 			while (true) {
-				try { 
+				try {
 					Thread.sleep(500);
 				} catch (Exception ignored) {
-					
 				}
 				boolean isRunning = isBinder();
 				if (wasRunning && !isRunning) {

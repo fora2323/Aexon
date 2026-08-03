@@ -6,7 +6,7 @@
 	android:layout_height="match_parent"
 	android:gravity="center"
 	android:orientation="vertical">
-	<com.aexon.material.aexonloading.AexonLoading
+	<com.aexon.view.AexonLoading
 		android:id="@+id/loadingaexon1"
 		android:layout_width="80dp"
 		android:layout_height="80dp"

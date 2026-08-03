@@ -1,3 +1,22 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
 package com.aexon;
 
 import android.app.Activity;
@@ -26,11 +45,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.aexon.core.AexonMath;
-import com.aexon.material.edittext.AexonEditText;
-import com.aexon.material.toasty.AexonToast;
-import com.aexon.theme.AexonTheme;
 import com.aexon.aexon.AexonWindowHelper;
+import com.aexon.widget.AexonEditText;
+import com.aexon.theme.AexonTheme;
 import com.aexon.widget.AexonPopupMenu;
 
 import java.io.File;
@@ -152,9 +169,9 @@ public class TerminalActivity extends Activity {
 						public void onExit(int exitCode) {
 							mainHandler.post(() -> {
 								if (exitCode == 0) {
-									AexonToast.make(TerminalActivity.this).title("Delete Log").message("Isi folder .Aexon berhasil dihapus").show();
+									SketchwareUtil.showMessage(TerminalActivity.this, "Delete Log: Isi folder .Aexon berhasil dihapus");
 								} else {
-									AexonToast.make(TerminalActivity.this).title("Delete Log").message("Gagal menghapus log (exit " + exitCode + ")").show();
+									SketchwareUtil.showMessage(TerminalActivity.this, "Delete Log: Gagal menghapus log (exit " + exitCode + ")");
 								}
 							});
 						}
@@ -169,7 +186,7 @@ public class TerminalActivity extends Activity {
 	private void saveLogViaShell() {
 		String logContent = txt_output.getText().toString();
 		if (logContent.isEmpty()) {
-			AexonToast.make(this).title("Save Log").message("Log is empty").show();
+			SketchwareUtil.showMessage(this, "Save Log: Log is empty");
 			return;
 		}
 		
@@ -181,7 +198,7 @@ public class TerminalActivity extends Activity {
 		try {
 			encoded = Base64.encodeToString(logContent.getBytes(StandardCharsets.UTF_8), Base64.NO_WRAP);
 		} catch (Exception e) {
-			AexonToast.make(this).title("Save Log").message("Failed: " + e.getMessage()).show();
+			SketchwareUtil.showMessage(this, "Save Log: Failed: " + e.getMessage());
 			return;
 		}
 		
@@ -194,9 +211,9 @@ public class TerminalActivity extends Activity {
 			public void onExit(int exitCode) {
 				mainHandler.post(() -> {
 					if (exitCode == 0) {
-						AexonToast.make(TerminalActivity.this).title("Save Log").message("Saved: " + fileName).show();
+						SketchwareUtil.showMessage(TerminalActivity.this, "Save Log: Saved: " + fileName);
 					} else {
-						AexonToast.make(TerminalActivity.this).title("Save Log").message("Failed to save log (exit " + exitCode + ")").show();
+						SketchwareUtil.showMessage(TerminalActivity.this, "Save Log: Failed to save log (exit " + exitCode + ")");
 					}
 				});
 			}
@@ -359,7 +376,8 @@ public class TerminalActivity extends Activity {
 	private boolean isScrollAtBottom() {
 		if (vscroll_output == null) return true;
 		int diff = (txt_output.getBottom() - (vscroll_output.getHeight() + vscroll_output.getScrollY()));
-		return diff <= AexonMath.dpToPxInt(this, 24f);
+		int threshold = SketchwareUtil.dpToPx(this, 24f);
+		return diff <= threshold;
 	}
 	
 	private void updateIconStates() {

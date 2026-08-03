@@ -1,9 +1,29 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
 package com.aexon;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -12,16 +32,19 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.aexon.aexon.AexonWindowHelper;
 import com.aexon.material.dialog.AexonAlertDialog;
-import com.aexon.material.toasty.AexonToast;
+import com.aexon.aexon.dialog.PathDialogFragment;
 import com.aexon.starter.AexonShizukuHelper;
 import com.aexon.starter.AexonStarter;
 import com.aexon.theme.AexonTheme;
 import com.aexon.widget.AexonCompatButton;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class ActivasiActivity extends Activity {
 	
 	private final Aexon.OnBinderReceivedListener activasiBinderReceived = () -> {
@@ -57,7 +80,7 @@ public class ActivasiActivity extends Activity {
 	private ImageView imageview4;
 	private TextView textview6;
 	
-	private Intent aexon_intent = new Intent();
+	private final Intent aexon_intent = new Intent();
 	
 	@Override
 	protected void onCreate(@Nullable Bundle _savedInstanceState) {
@@ -112,7 +135,7 @@ public class ActivasiActivity extends Activity {
 			}
 			
 			if (!shizuku.isShizukuRunning()) {
-				AexonToast.make(ActivasiActivity.this).title(getString(R.string.tag_not_running)).message(getString(R.string.tag_shizuku_dec_toasty)).show();
+				SketchwareUtil.showMessage(ActivasiActivity.this, getString(R.string.tag_not_running));
 				return;
 			}
 			
@@ -121,7 +144,7 @@ public class ActivasiActivity extends Activity {
 				return;
 			}
 			
-			AexonToast.make(ActivasiActivity.this).title(getString(R.string.tag_shizuku_running)).message(getString(R.string.tag_shizuku_running_dec)).show();
+			SketchwareUtil.showMessage(ActivasiActivity.this, getString(R.string.tag_shizuku_running));
 		});
 		
 		start_shizuku.setOnClickListener(_v -> {
@@ -155,14 +178,14 @@ public class ActivasiActivity extends Activity {
 		});
 		
 		view_cmd.setOnClickListener(_v -> {
-			InfoDialogPathDialogFragmentActivity bottomSheet = new InfoDialogPathDialogFragmentActivity();
+			PathDialogFragment bottomSheet = new PathDialogFragment();
 			bottomSheet.show(getFragmentManager(), "InfoDialog");
 		});
 		
 		start_root.setOnClickListener(_v -> {
 			AexonShizukuHelper.isRooted(rooted -> {
 				if (!rooted) {
-					AexonToast.make(ActivasiActivity.this).title(getString(R.string.tag_root_not_support)).message(getString(R.string.tag_root_not_support_dec)).show();
+					SketchwareUtil.showMessage(ActivasiActivity.this, getString(R.string.tag_root_not_support));
 					return;
 				}
 				AexonStarter.newInstance(AexonStarter.MODE_ROOT, null).show(getFragmentManager(), "loading");
@@ -205,19 +228,19 @@ public class ActivasiActivity extends Activity {
 		start_shizuku.setButtonBackgroundColor(theme.getColorPrimary());
 		view_cmd.setButtonBackgroundColor(theme.getColorPrimary());
 		start_root.setButtonBackgroundColor(theme.getColorPrimary());
-        
+		
 		AexonWindowHelper.setWindowStyle(getWindow(), theme.getColorSurface());
-        
+		
 		start_root.setTextColor(theme.getColorOnPrimary());
 		view_cmd.setTextColor(theme.getColorOnPrimary());
 		connect_shizuku.setTextColor(theme.getColorOnPrimary());
 		start_shizuku.setTextColor(theme.getColorOnPrimary());
 		
-        start_root.setButtonRippleColor(theme.getColorOnPrimaryDark());
-        view_cmd.setButtonRippleColor(theme.getColorOnPrimaryDark());
-        connect_shizuku.setButtonRippleColor(theme.getColorOnPrimaryDark());
-        start_shizuku.setButtonRippleColor(theme.getColorOnPrimaryDark());
-        
+		start_root.setButtonRippleColor(theme.getColorOnPrimaryDark());
+		view_cmd.setButtonRippleColor(theme.getColorOnPrimaryDark());
+		connect_shizuku.setButtonRippleColor(theme.getColorOnPrimaryDark());
+		start_shizuku.setButtonRippleColor(theme.getColorOnPrimaryDark());
+		
 		textview1.setTextColor(theme.getColorOnSurface());
 		textview2.setTextColor(theme.getColorOnSurface());
 		textview3.setTextColor(theme.getColorOnSurfaceVariant());

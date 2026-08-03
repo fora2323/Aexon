@@ -1,12 +1,36 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
 package com.aexon;
 
-import com.aexon.annotation.NonNull;
+import android.os.Build;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public final class AexonMain {
 	
 	private static final byte AX_KEY = 0x5A;
@@ -29,11 +53,7 @@ public final class AexonMain {
 		for (int i = 0; i < enc.length; i++) {
 			out[i] = (byte) (enc[i] ^ AX_KEY);
 		}
-		try {
-			return new String(out, "UTF-8");
-		} catch (Exception e) {
-			return "";
-		}
+		return new String(out, StandardCharsets.UTF_8);
 	}
 	
 	@NonNull
@@ -51,7 +71,7 @@ public final class AexonMain {
 		if (!Aexon.isBinder()) return "Unknown";
 		try {
 			AexonProcess p = Aexon.newProcess(new String[]{"getselinux"}, null, null).execResult();
-			try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()))) {
+			try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream(), StandardCharsets.UTF_8))) {
 				String result = br.readLine();
 				return result != null && !result.trim().isEmpty() ? result.trim() : "Unknown";
 			}

@@ -1,4 +1,23 @@
-package com.aexon.material.aexonloading;
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
+package com.aexon.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -11,13 +30,16 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.aexon.R;
-import com.aexon.annotation.NonNull;
-import com.aexon.annotation.Nullable;
 
 public class AexonLoading extends View {
 	
@@ -76,14 +98,22 @@ public class AexonLoading extends View {
 			a.recycle();
 		}
 		
-		setIconInternal(context.getResources().getDrawable(iconResId));
+		setIconInternal(getDrawableCompat(context, iconResId));
 		setBackgroundColor(Color.TRANSPARENT);
 		
 		if (indeterminate) startIndeterminate();
 	}
 	
-	private void setIconInternal(Drawable drawable) {
-		if (drawable != null) {
+	private Drawable getDrawableCompat(Context context, @DrawableRes int resId) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			return context.getDrawable(resId);
+		} else {
+			return context.getResources().getDrawable(resId);
+		}
+	}
+	
+	private void setIconInternal(@Nullable Drawable drawable) {
+		if (drawable != null && drawable.getConstantState() != null) {
 			this.iconDrawable = drawable;
 			this.trackDrawable = iconDrawable.getConstantState().newDrawable().mutate();
 			this.thumbDrawable = iconDrawable.getConstantState().newDrawable().mutate();
@@ -100,12 +130,12 @@ public class AexonLoading extends View {
 		invalidate();
 	}
 	
-	public void setIcon(int resId) {
-		setIconInternal(getContext().getResources().getDrawable(resId));
+	public void setIcon(@DrawableRes int resId) {
+		setIconInternal(getDrawableCompat(getContext(), resId));
 		invalidate();
 	}
 	
-	public void setIcon(Drawable drawable) {
+	public void setIcon(@Nullable Drawable drawable) {
 		setIconInternal(drawable);
 		invalidate();
 	}

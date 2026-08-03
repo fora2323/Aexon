@@ -1,3 +1,22 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
 package com.aexon.aexon;
 
 import android.graphics.Color;
@@ -7,10 +26,15 @@ import android.view.Window;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
 
-import com.aexon.annotation.NonNull;
-import com.aexon.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AexonWindowHelper {
+	
+	private AexonWindowHelper() {
+		throw new UnsupportedOperationException("No instances");
+	}
 	
 	public static void setWindowStyle(@NonNull Window window, int color) {
 		window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -18,7 +42,7 @@ public class AexonWindowHelper {
 		window.setNavigationBarColor(color);
 		boolean darkIcon = needsDarkIcon(color);
 		
-		if (Build.VERSION.SDK_INT >= RequiresApi.R) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 			applyInsetsController(window, darkIcon);
 		} else {
 			applyLegacyFlags(window, darkIcon);
@@ -31,14 +55,14 @@ public class AexonWindowHelper {
 		window.setNavigationBarColor(navigationBarColor);
 		boolean darkIcon = needsDarkIcon(statusBarColor);
 		
-		if (Build.VERSION.SDK_INT >= RequiresApi.R) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 			applyInsetsController(window, darkIcon);
 		} else {
 			applyLegacyFlags(window, darkIcon);
 		}
 	}
 	
-	@RequiresApi(RequiresApi.R)
+	@RequiresApi(api = Build.VERSION_CODES.R)
 	private static void applyInsetsController(@NonNull Window window, boolean darkIcon) {
 		WindowInsetsController controller = window.getInsetsController();
 		if (controller != null) {
@@ -55,7 +79,7 @@ public class AexonWindowHelper {
 		View decorView = window.getDecorView();
 		int flags = decorView.getSystemUiVisibility();
 		
-		if (Build.VERSION.SDK_INT >= RequiresApi.MARSHMALLOW) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (darkIcon) {
 				flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 			} else {
@@ -63,7 +87,7 @@ public class AexonWindowHelper {
 			}
 		}
 		
-		if (Build.VERSION.SDK_INT >= RequiresApi.OREO) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			if (darkIcon) {
 				flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
 			} else {

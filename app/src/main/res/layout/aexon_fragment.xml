@@ -10,48 +10,55 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical">
-		<LinearLayout
-			android:id="@+id/linear2"
+		<com.aexon.view.AexonSwipeRefreshLayout
+			android:id="@+id/swipe_refresh"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
-			<ListView
-				android:id="@+id/listview1"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:paddingTop="75dp"
-				android:paddingBottom="98dp"
-				android:dividerHeight="0dp"
-				android:clipToPadding="false"
-				android:divider="@null"
-				android:choiceMode="none"
-				android:scrollbars="none"
-				tools:listitem="@layout/list_app" />
+			android:orientation="vertical"
+			app:ax_swipe_size="default_size">
 			<LinearLayout
-				android:id="@+id/container3"
+				android:id="@+id/linear2"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:gravity="center_horizontal|center_vertical"
 				android:orientation="vertical">
-				<com.aexon.material.aexonloading.AexonLoading
-					android:id="@+id/loadingaexon1"
-					android:layout_width="120dp"
-					android:layout_height="120dp"
-					android:orientation="vertical"
-					app:thumb_color="@color/colorPrimary"
-					app:track_color="@color/colorSurfaceContainer"
-					app:icon="@drawable/ic_aexon" />
-				<TextView
-					android:id="@+id/text_not_found"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:padding="8dp"
-					android:text="@string/tag_not_found"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:textColor="@color/colorOnSurfaceVariant" />
+				<ListView
+					android:id="@+id/listview1"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:paddingTop="75dp"
+					android:paddingBottom="98dp"
+					android:dividerHeight="0dp"
+					android:clipToPadding="false"
+					android:divider="@null"
+					android:choiceMode="none"
+					android:scrollbars="none"
+					tools:listitem="@layout/list_app" />
+				<LinearLayout
+					android:id="@+id/container3"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:gravity="center_horizontal|center_vertical"
+					android:orientation="vertical">
+					<com.aexon.view.AexonLoading
+						android:id="@+id/loadingaexon1"
+						android:layout_width="120dp"
+						android:layout_height="120dp"
+						android:orientation="vertical"
+						app:thumb_color="@color/colorPrimary"
+						app:track_color="@color/colorSurfaceContainer"
+						app:icon="@drawable/ic_aexon" />
+					<TextView
+						android:id="@+id/text_not_found"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:padding="8dp"
+						android:text="@string/tag_not_found"
+						android:textSize="14sp"
+						android:textStyle="bold"
+						android:textColor="@color/colorOnSurfaceVariant" />
+				</LinearLayout>
 			</LinearLayout>
-		</LinearLayout>
+		</com.aexon.view.AexonSwipeRefreshLayout>
 		<LinearLayout
 			android:id="@+id/search_view"
 			android:layout_width="match_parent"
@@ -70,7 +77,7 @@
 				android:padding="6dp"
 				android:src="@drawable/ic_search"
 				android:scaleType="centerInside" />
-			<com.aexon.material.edittext.AexonEditText
+			<com.aexon.widget.AexonEditText
 				android:id="@+id/search_bar"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"

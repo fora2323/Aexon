@@ -1,9 +1,30 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
+
 package com.aexon.material.bottomsheet;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -15,12 +36,13 @@ import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.aexon.R;
-import com.aexon.annotation.NonNull;
-import com.aexon.annotation.Nullable;
-import com.aexon.annotation.RequiresApi;
-import com.aexon.core.AexonApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
+import com.aexon.R;
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AexonBottomSheetDialog extends Dialog {
 	
 	private BottomSheetContainer mContainer;
@@ -56,7 +78,7 @@ public class AexonBottomSheetDialog extends Dialog {
 			window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 			window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 			
-			if (AexonApi.minSdk(RequiresApi.LOLLIPOP)) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 				window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 				window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 				window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -65,7 +87,7 @@ public class AexonBottomSheetDialog extends Dialog {
 				window.setNavigationBarColor(Color.TRANSPARENT);
 			}
 			
-			if (AexonApi.minSdk(RequiresApi.R)) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 				window.setDecorFitsSystemWindows(false);
 			}
 		}
@@ -79,12 +101,12 @@ public class AexonBottomSheetDialog extends Dialog {
 	}
 	
 	private void applyEdgeToEdgePadding() {
-		if (AexonApi.minSdk(RequiresApi.LOLLIPOP)) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			mContainer.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
 				@Override
 				public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
 					int navBottom;
-					if (AexonApi.minSdk(RequiresApi.R)) {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
 						navBottom = insets.getInsets(WindowInsets.Type.navigationBars()).bottom;
 					} else {
 						navBottom = insets.getSystemWindowInsetBottom();

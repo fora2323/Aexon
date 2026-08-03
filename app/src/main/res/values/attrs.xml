@@ -24,16 +24,6 @@
         <attr name="slider_stroke_color" format="color" />
         <attr name="slider_elevation_track" format="dimension" />
     </declare-styleable>
-    <!-- AexonTerminaView -->
-    <declare-styleable name="AexonTerminaView">
-        <attr name="terminalTextSize" format="dimension" />
-        <attr name="terminalTextColor" format="color" />
-        <attr name="terminalBgColor" format="color" />
-        <attr name="showInputBar" format="boolean" />
-        <attr name="maxScrollbackLines" format="integer" />
-        <attr name="terminalFontAsset" format="string" />
-        <attr name="terminalFontRes" format="reference" />
-    </declare-styleable>
     <!-- AexonEditText -->
     <declare-styleable name="AexonEditText">
         <attr name="aexon_mode" format="enum">
@@ -109,5 +99,17 @@
         <attr name="ax_btn_rippleColor" format="color" />
         <attr name="ax_btn_strokeWidth" format="dimension" />
         <attr name="ax_btn_strokeColor" format="color" />
+    </declare-styleable>
+    <!--AexonSwipeRefreshLayout-->
+    <declare-styleable name="AexonSwipeRefreshLayout">
+        <attr name="ax_indicator_background_color" format="color" />
+        <attr name="ax_progress_color" format="color" />
+        <attr name="ax_swipe_size" format="enum">
+            <enum name="large" value="0" />
+            <enum name="default_size" value="1" />
+        </attr>
+        <attr name="ax_circle_size" format="dimension" />
+        <attr name="ax_progress_size" format="dimension" />
+        <attr name="ax_refresh_trigger" format="dimension" />
     </declare-styleable>
 </resources>

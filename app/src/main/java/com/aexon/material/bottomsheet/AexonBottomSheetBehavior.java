@@ -1,9 +1,31 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
+
 package com.aexon.material.bottomsheet;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.os.Build;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -11,11 +33,11 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 
-import com.aexon.annotation.NonNull;
-import com.aexon.annotation.Nullable;
-import com.aexon.core.AexonApi;
-import com.aexon.core.AexonMath;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AexonBottomSheetBehavior {
 
     public static final int STATE_DRAGGING = 1;
@@ -157,7 +179,7 @@ public class AexonBottomSheetBehavior {
         if (mPeekHeight >= 0) {
             return mPeekHeight;
         }
-        return AexonMath.dpToPxInt(64f);
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 64f, mView.getResources().getDisplayMetrics());
     }
 
     private float getOffsetForState(int state) {
@@ -198,7 +220,7 @@ public class AexonBottomSheetBehavior {
         if (state == STATE_EXPANDED || state == STATE_COLLAPSED || state == STATE_HALF_EXPANDED || state == STATE_HIDDEN) {
             mLastStableState = state;
         }
-        if (AexonApi.minSdk(16) && mView != null) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && mView != null) {
             if (state == STATE_HIDDEN) {
                 mView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
             } else {

@@ -1,6 +1,28 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
+
 package com.aexon.material.viewpager;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -8,18 +30,18 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
-import android.widget.Scroller;
-import android.app.Fragment;
 import android.widget.EdgeEffect;
-import android.graphics.Canvas;
+import android.widget.Scroller;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.aexon.annotation.NonNull;
-import com.aexon.annotation.Nullable;
-
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AexonViewPager extends ViewGroup {
 	
 	private static final Interpolator sInterpolator = t -> {
@@ -106,7 +128,7 @@ public class AexonViewPager extends ViewGroup {
 		if (mAdapter != null) {
 			mAdapter.startUpdate(this);
 			for (int i = 0; i < mAdapter.getCount(); i++) {
-				Fragment f = mAdapter.getFragmentAt(i);
+				android.app.Fragment f = mAdapter.getFragmentAt(i);
 				if (f != null) mAdapter.destroyItem(this, i, f);
 			}
 			mAdapter.finishUpdate(this);
@@ -193,7 +215,7 @@ public class AexonViewPager extends ViewGroup {
 		
 		for (int i = 0; i < mAdapter.getCount(); i++) {
 			if (i < startPos || i > endPos) {
-				Fragment f = mAdapter.getFragmentAt(i);
+				android.app.Fragment f = mAdapter.getFragmentAt(i);
 				if (f != null) {
 					mAdapter.destroyItem(this, i, f);
 					mFragmentViews.remove(i);
@@ -292,7 +314,7 @@ public class AexonViewPager extends ViewGroup {
 		if (mAdapter == null) return;
 		
 		for (int i = 0; i < mAdapter.getCount(); i++) {
-			Fragment f = mAdapter.getFragmentAt(i);
+			android.app.Fragment f = mAdapter.getFragmentAt(i);
 			if (f == null) continue;
 			View v = f.getView();
 			if (v == null || v.getParent() != this) continue;
@@ -459,8 +481,7 @@ public class AexonViewPager extends ViewGroup {
 				int pageWidth = getWidth();
 				int nextPage = mCurItem;
 				
-				if (Math.abs(velocityX) > mMinimumVelocity
-				&& Math.abs(getScrollX() - mCurItem * pageWidth) > mFlingDistance) {
+				if (Math.abs(velocityX) > mMinimumVelocity && Math.abs(getScrollX() - mCurItem * pageWidth) > mFlingDistance) {
 					nextPage = velocityX > 0 ? mCurItem - 1 : mCurItem + 1;
 				} else {
 					float offset = getScrollX() - mCurItem * pageWidth;

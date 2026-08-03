@@ -96,7 +96,7 @@
 					android:paddingBottom="6dp"
 					android:gravity="center_vertical"
 					android:orientation="horizontal">
-					<com.aexon.material.edittext.AexonEditText
+					<com.aexon.widget.AexonEditText
 						android:id="@+id/input_exe"
 						android:layout_width="0dp"
 						android:layout_height="wrap_content"

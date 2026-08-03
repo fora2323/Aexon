@@ -1,9 +1,29 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
 package com.aexon.aexon;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -12,13 +32,19 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.aexon.theme.AexonTheme;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
+import com.aexon.R;
+import com.aexon.SketchwareUtil;
 import com.aexon.material.color.AexonColorPickerView;
 import com.aexon.material.color.AexonColorSliderBrightness;
-import com.aexon.material.edittext.AexonEditText;
 import com.aexon.material.dialog.AexonAlertDialog;
-import com.aexon.R;
+import com.aexon.widget.AexonEditText;
+import com.aexon.theme.AexonTheme;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class ColorPickerDialog {
 	
 	public interface OnColorConfirmed {
@@ -28,7 +54,11 @@ public class ColorPickerDialog {
 	private static final int DEFAULT_COLOR = 0xFF80D4D6;
 	private static boolean isShowing = false;
 	
-	public static void show(Context context, OnColorConfirmed callback) {
+	private ColorPickerDialog() {
+		throw new UnsupportedOperationException("No instances");
+	}
+	
+	public static void show(@NonNull Context context, @Nullable OnColorConfirmed callback) {
 		if (isShowing) return;
 		isShowing = true;
 		AexonTheme theme = AexonTheme.getInstance();
@@ -118,10 +148,9 @@ public class ColorPickerDialog {
 		}
 	}
 	
-	private static void applyContainerStroke(LinearLayout container, int strokeColor, int strokeDp, float radiusDp, Context context) {
-		float density = context.getResources().getDisplayMetrics().density;
-		int strokePx = (int) (strokeDp * density + 0.5f);
-		float radiusPx = radiusDp * density;
+	private static void applyContainerStroke(@NonNull LinearLayout container, int strokeColor, int strokeDp, float radiusDp, @NonNull Context context) {
+		int strokePx = SketchwareUtil.dpToPx(context, strokeDp);
+		float radiusPx = SketchwareUtil.getDip(context, (int) radiusDp);
 		GradientDrawable bg = new GradientDrawable();
 		bg.setShape(GradientDrawable.RECTANGLE);
 		bg.setCornerRadius(radiusPx);

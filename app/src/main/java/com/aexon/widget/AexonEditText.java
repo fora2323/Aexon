@@ -1,4 +1,24 @@
-package com.aexon.material.edittext;
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
+
+package com.aexon.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -20,15 +40,18 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.PathInterpolator;
 import android.widget.EditText;
 import android.widget.TextView;
-import java.lang.reflect.Field;
 
-import com.aexon.annotation.NonNull;
-import com.aexon.annotation.Nullable;
-import com.aexon.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import com.aexon.theme.AexonTheme;
 import com.aexon.theme.AexonThemeListener;
 import com.aexon.R;
 
+import java.lang.reflect.Field;
+
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AexonEditText extends EditText {
 	
 	public static final int MODE_DEFAULT = 0;
@@ -268,7 +291,7 @@ public class AexonEditText extends EditText {
 		if (mode == MODE_DEFAULT) applyUnderlineColor(activeColor);
 	}
 	
-	@RequiresApi(RequiresApi.Q)
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	private void applyCursorColorApi29(int color) {
 		Drawable cursor = getTextCursorDrawable();
 		if (cursor != null) {
@@ -312,7 +335,7 @@ public class AexonEditText extends EditText {
 		}
 	}
 	
-	@RequiresApi(RequiresApi.Q)
+	@RequiresApi(api = Build.VERSION_CODES.Q)
 	private void applyHandleColorApi29(int color) {
 		Drawable left = getTextSelectHandleLeft();
 		if (left != null) {

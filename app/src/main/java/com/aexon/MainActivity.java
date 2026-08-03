@@ -1,3 +1,23 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
+
 package com.aexon;
 
 import android.app.Activity;
@@ -18,6 +38,7 @@ import androidx.annotation.RequiresApi;
 
 import com.aexon.aexon.AexonWindowHelper;
 import com.aexon.aexon.DialogCustom;
+import com.aexon.aexon.dialog.InfoDialogFragment;
 import com.aexon.material.viewpager.AexonViewPager;
 import com.aexon.theme.AexonTheme;
 import com.aexon.theme.AexonThemeListener;
@@ -149,7 +170,7 @@ public class MainActivity extends Activity {
 				});
 				dialog.show();
 			} else if (itemId == R.id.action_info) {
-				InfoDialogFragmentActivity bottomSheet = new InfoDialogFragmentActivity();
+				InfoDialogFragment bottomSheet = new InfoDialogFragment();
 				bottomSheet.show(getFragmentManager(), "InfoDialog");
 			}
 		});
@@ -162,11 +183,7 @@ public class MainActivity extends Activity {
 			if (shortcutManager != null) {
 				Intent shortcutIntent = new Intent(this, TerminalActivity.class);
 				shortcutIntent.setAction(Intent.ACTION_VIEW);
-				ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_terminal")
-						.setShortLabel("Open Terminal")
-						.setIcon(Icon.createWithResource(this, R.drawable.ic_terminal_2))
-						.setIntent(shortcutIntent)
-						.build();
+				ShortcutInfo shortcut = new ShortcutInfo.Builder(this, "shortcut_terminal").setShortLabel("Open Terminal").setIcon(Icon.createWithResource(this, R.drawable.ic_terminal_2)).setIntent(shortcutIntent).build();
 				shortcutManager.setDynamicShortcuts(Arrays.asList(shortcut));
 			}
 		}
@@ -202,10 +219,7 @@ public class MainActivity extends Activity {
 	public void _applyTheme(@NonNull final AexonTheme _theme) {
 		// nav
 		aexonnavigationbbar1.setBackgroundColor(_theme.getColorSurfaceContainerHigh());
-		ColorStateList iconTint = new ColorStateList(
-				new int[][]{new int[]{android.R.attr.state_checked}, new int[]{}}, 
-				new int[]{_theme.getColorPrimary(), _theme.getColorOnSurfaceVariant()}
-		);
+		ColorStateList iconTint = new ColorStateList(new int[][]{new int[]{android.R.attr.state_checked}, new int[]{}}, new int[]{_theme.getColorPrimary(), _theme.getColorOnSurfaceVariant()});
 		aexonnavigationbbar1.setItemIconTint(iconTint);
 		aexonnavigationbbar1.setThumbColor(_theme.getColorPrimary());
 		aexonnavigationbbar1.setRippleColor(_theme.getColorOnPrimaryDark());

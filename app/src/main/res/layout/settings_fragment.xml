@@ -69,7 +69,7 @@
 						android:textColor="@color/colorOnSurfaceVariant"
 						android:includeFontPadding="false" />
 				</LinearLayout>
-				<com.aexon.material.aexonswitch.AexonSwitch
+				<com.aexon.widget.AexonSwitch
 					android:id="@+id/switch1"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
 							android:textColor="@color/colorOnSurfaceVariant"
 							android:includeFontPadding="false" />
 					</LinearLayout>
-					<com.aexon.material.aexonswitch.AexonSwitch
+					<com.aexon.widget.AexonSwitch
 						android:id="@+id/switch3"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
 						android:background="@color/colorSurfaceContainerLow"
 						android:gravity="center_vertical"
 						android:orientation="horizontal">
-						<com.aexon.material.edittext.AexonEditText
+						<com.aexon.widget.AexonEditText
 							android:id="@+id/edittext1"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
 						android:background="@color/colorSurfaceContainerLow"
 						android:gravity="center_vertical"
 						android:orientation="horizontal">
-						<com.aexon.material.edittext.AexonEditText
+						<com.aexon.widget.AexonEditText
 							android:id="@+id/edittext2"
 							android:layout_width="0dp"
 							android:layout_height="wrap_content"
@@ -270,7 +270,7 @@
 						android:textColor="@color/colorOnSurfaceVariant"
 						android:includeFontPadding="false" />
 				</LinearLayout>
-				<com.aexon.material.aexonswitch.AexonSwitch
+				<com.aexon.widget.AexonSwitch
 					android:id="@+id/switch2"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"

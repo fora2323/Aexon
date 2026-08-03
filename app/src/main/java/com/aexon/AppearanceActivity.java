@@ -1,3 +1,23 @@
+/*
+* Copyright (c) 2026 Fora
+* 
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <https://www.gnu.org/licenses/>.
+* 
+* Contact: Fora <fora060823@gmail.com>
+* Created: 27-01-2026
+*/
+
 package com.aexon;
 
 import android.app.Activity;
@@ -15,15 +35,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.aexon.aexon.ColorPickerDialog;
 import com.aexon.aexon.AexonWindowHelper;
 import com.aexon.aexon.animation.AexonAnimationCompat;
-import com.aexon.material.aexonswitch.AexonSwitch;
-import com.aexon.material.button.AexonRadioButton;
+import com.aexon.widget.AexonSwitch;
+import com.aexon.widget.AexonRadioButton;
 import com.aexon.theme.AexonTheme;
 import com.aexon.theme.AexonThemeListener;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class AppearanceActivity extends Activity {
 	
 	private final AexonThemeListener themeListener = (seedColor, theme) -> _applyTheme(theme);
