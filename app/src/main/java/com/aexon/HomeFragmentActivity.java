@@ -37,7 +37,6 @@ import java.util.regex.*;
 import org.json.*;
 import com.aexon.Aexon;
 import com.aexon.AexonMain;
-import com.aexon.material.toasty.AexonToast;
 import android.content.pm.PackageInfo;
 import com.aexon.aexon.animation.AexonAnimationCompat;
 import android.view.animation.PathInterpolator;
@@ -242,6 +241,14 @@ public class HomeFragmentActivity extends Fragment {
 			ax_intent.setAction(Intent.ACTION_VIEW);
 			ax_intent.setData(Uri.parse(getString(R.string.tag_url_github_repo)));
 			startActivity(ax_intent);
+		});
+		
+		card_plugin.setOnClickListener(_v -> {
+			if (getContext() != null) {
+				ax_intent.setClass(getContext(), PluginActivity.class);
+				startActivity(ax_intent);
+				getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+			}
 		});
 		
 		imageview10.setOnClickListener(_v -> {

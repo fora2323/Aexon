@@ -30,9 +30,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import androidx.lifecycle.lifecycle.runtime.anchor.*;
-import com.aexon.material.aexonswitch.AexonSwitch;
-import com.aexon.material.edittext.AexonEditText;
+import com.aexon.widget.AexonEditText;
+import com.aexon.widget.AexonSwitch;
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -40,7 +39,8 @@ import java.util.regex.*;
 import org.json.*;
 import com.aexon.theme.AexonTheme;
 import com.aexon.theme.AexonThemeListener;
-import com.aexon.aexon.animation.AexonAnimationCompat;
+import com.aexon.aexon.animation.AexonAnimationCompat;
+
 
 public class SettingsFragmentActivity extends Fragment {
 	
@@ -324,4 +324,4 @@ public class SettingsFragmentActivity extends Fragment {
 		shadowInitialized = true;
 	}
 	
-}
+}
