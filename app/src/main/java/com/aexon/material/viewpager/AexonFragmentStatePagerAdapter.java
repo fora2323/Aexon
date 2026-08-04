@@ -36,7 +36,7 @@ import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public abstract class AexonFragmentStatePagerAdapter {
-	
+	//add Fragment
 	private final FragmentManager mFragmentManager;
 	private FragmentTransaction mCurTransaction = null;
 	private List<Fragment> mFragments = new ArrayList<>();
